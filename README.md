@@ -6,4 +6,4 @@ git commit
 # 合并仓库
 git pull --rebase origin master
 # 上传
-git push origin master
+git push -u origin master
