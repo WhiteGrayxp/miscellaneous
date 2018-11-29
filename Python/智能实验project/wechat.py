@@ -2,7 +2,6 @@ import itchat
 import requests
 import threading
 import cv2
-import numpy as np
 import time
 import datetime
 import GetNotification
