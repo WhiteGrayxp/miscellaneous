@@ -34,7 +34,7 @@ out_analysis2 = zeros(1,30);
 out_analysis3 = zeros(1,30);
 
 for loop=1:30
-    sigma = 10^(-loop/10)/15^a;      %噪声方差
+    sigma = 10^(-loop/10)/20^a;      %噪声方差
     %仿真值
     y1 = sqrt(p1)*d1^(-0.5*a)*(h11.*x1);
     y1 = abs(y1);

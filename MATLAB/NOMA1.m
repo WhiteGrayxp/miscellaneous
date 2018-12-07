@@ -1,16 +1,16 @@
 all clear;
 clc;
 clf;
-thres = 5;
+thres = 10;     % 对应10分贝
 pa = 0:0.001:1/(1+thres);
 pb = pa;
 [p3,p33] = meshgrid(pa,pb);
 p1 = 1 - p3;
 p2 = 1 - p33;
-d1 = 15;
-d2 = 25;
+d1 = 10;
+d2 = 20;
 a = 3;
-sigma = 0.01/10^a;
+sigma = 0.000011;    %当信噪比大约小于40db时非凸，不考虑路径损耗
 
 p_total1 = 4 - exp(sigma*thres*d1^a./(thres*p3-p1)) - exp(sigma*thres*d2^a./(thres*p33-p2));
 
@@ -36,13 +36,13 @@ fprintf('位于p3:%0.3f, p33:%0.3f',pa(I_col),pa(I_row));
 
 p_oma = 4-exp(-sigma*thres*d1^a/(1-pa(I_row)))-exp(-sigma*thres*d1^a/pa(I_row))-exp(-sigma*thres*d2^a/(1-pa(I_col)))-exp(-sigma*thres*d2^a/pa(I_col));
 p_oma_2 = 4-2*exp(-sigma*thres*d1^a)-2*exp(-sigma*thres*d2^a);
-figure(1)
-surf(p3,p33,p_total1);
-shading interp;
-
-figure(2)
-surf(p3,p33,p_total2);
-shading interp;
+% figure(1)
+% surf(p3,p33,p_total1);
+% shading interp;
+% 
+% figure(2)
+% surf(p3,p33,p_total2);
+% shading interp;
 
 figure(3)
 surf(p3,p33,p_total);
