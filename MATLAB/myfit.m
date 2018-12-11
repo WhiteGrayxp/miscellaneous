@@ -1,7 +1,7 @@
 function f = myfit(x)
 
-d1 = 15;
-d2 = 25;
+d1 = 10;
+d2 = 20;
 a = 3;
 sigma = 0.0001/10^a;
 thres = 5;
