@@ -10,7 +10,7 @@ p2 = 1 - p33;
 d1 = 10;
 d2 = 20;
 a = 3;
-sigma = 0.000011;    %当信噪比大约小于40db时非凸，不考虑路径损耗
+sigma = 0.0000000001;    %当信噪比大约小于40db时非凸，不考虑路径损耗
 
 p_total1 = 4 - exp(sigma*thres*d1^a./(thres*p3-p1)) - exp(sigma*thres*d2^a./(thres*p33-p2));
 
