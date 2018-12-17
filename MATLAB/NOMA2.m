@@ -4,7 +4,7 @@ clf;
 d1 = 15;
 d2 = 30;
 a = 3;
-sigma = 1/10^10;
+sigma = 1/10^6;
 thres = 5;
 p1 = 0:0.0001:1/(1+thres);
 p_out = 2 - exp(-1*d1^a*thres*sigma./p1) - exp(d2^a*thres*sigma./(p1*thres+p1-1));
