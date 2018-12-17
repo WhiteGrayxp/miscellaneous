@@ -4,4 +4,4 @@ p1 = power(1);
 p2 = power(2);
 p3 = power(3);
 p33 = power(4);
- outage = 4-exp(-sigma*thres*d1^a/(1-p1))-exp(-sigma*thres*d2^a/p2)-exp(-sigma*thres*d1^a/p3)-exp(-sigma*thres*d2^a/p33);
+outage = 4-exp(-sigma*thres*d1^a/p1)-exp(-sigma*thres*d2^a/p2)-exp(-sigma*thres*d1^a/p3)-exp(-sigma*thres*d2^a/p33);

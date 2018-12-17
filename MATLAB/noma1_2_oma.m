@@ -7,17 +7,17 @@ a = 3;
 thres = 5;
 % 分别调用函数NOMA1_outage，NOMA2_outage和OMA_outage计算相应信噪比下最小中断概率
 % 及功率分配
-x_axis = zeros(1,30);
-out_noma_1 = zeros(1,30);
-out_noma_2 = zeros(1,30);
-out_oma_1 = zeros(1,30);    %对应NOMA1功率分配
-out_oma_2 = zeros(1,30);    %对应NOMA2功率分配
+x_axis = zeros(1,40);
+out_noma_1 = zeros(1,40);
+out_noma_2 = zeros(1,40);
+out_oma_1 = zeros(1,40);    %对应NOMA1功率分配
+out_oma_2 = zeros(1,40);    %对应NOMA2功率分配
 position1 = zeros(1,4);     %对应NOMA1功率分配
 position2 = zeros(1,4);     %对应NOMA2功率分配
-for loop = 51:80
+for loop = 51:90
     %横坐标
     x_axis(loop-50) = loop;
-    sigma= 10^(-loop/10);  %发射机信噪比为51dB到80dB
+    sigma= 10^(-loop/10);  %发射机信噪比为51dB到90dB
     [outage1,position1(1,3:4)] = NOMA1_outage(sigma,d1,d2,a,thres);
     [outage2,position2(1,1:2)] = NOMA2_outage(sigma,d1,d2,a,thres);
     position1(1) = 1 - position1(3);
