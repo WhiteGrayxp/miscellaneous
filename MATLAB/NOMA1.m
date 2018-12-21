@@ -36,13 +36,13 @@ fprintf('Î»ÓÚp3:%0.3f, p33:%0.3f',pa(I_col),pa(I_row));
 
 p_oma = 4-exp(-sigma*thres*d1^a/(1-pa(I_row)))-exp(-sigma*thres*d1^a/pa(I_row))-exp(-sigma*thres*d2^a/(1-pa(I_col)))-exp(-sigma*thres*d2^a/pa(I_col));
 p_oma_2 = 4-2*exp(-sigma*thres*d1^a)-2*exp(-sigma*thres*d2^a);
-% figure(1)
-% surf(p3,p33,p_total1);
-% shading interp;
-% 
-% figure(2)
-% surf(p3,p33,p_total2);
-% shading interp;
+figure(1)
+surf(p3,p33,p_total1);
+shading interp;
+
+figure(2)
+surf(p3,p33,p_total2);
+shading interp;
 
 figure(3)
 surf(p3,p33,p_total);
