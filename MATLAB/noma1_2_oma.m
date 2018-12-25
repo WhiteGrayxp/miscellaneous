@@ -15,8 +15,8 @@ for loop = 51:90
     %横坐标
     x_axis(loop-50) = loop;
     sigma= 10^(-loop/10);  %发射机信噪比为51dB到90dB
-    [outage1,~] = NOMA1_outage(sigma,d1,d2,a,thres);
-    [outage2,~] = NOMA2_outage(sigma,d1,d2,a,thres);
+    [outage1,~] = find_noma1_min_outage(sigma,d1,d2,a,thres);
+    [outage2,~] = find_noma2_min_outage(sigma,d1,d2,a,thres);
     [outage_oma,~] = find_oma_min_outage(sigma,d1,d2,a,thres);
 %     position = 2/3*ones(4,1);
 %     outage_oma = OMA_outage(sigma,d1,d2,a,thres,position);

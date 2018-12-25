@@ -1,3 +1,4 @@
+% 第二种NOMA方案的中断概率曲线
 all clear;
 clc;
 clf;

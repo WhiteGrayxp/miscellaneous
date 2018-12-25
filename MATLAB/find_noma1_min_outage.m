@@ -1,4 +1,5 @@
-function [outage,position] = NOMA1_outage(sigma,d1,d2,a,thres)
+% 求第一种NOMA方案的最佳功率分配方案以及中断概率
+function [outage,position] = find_noma1_min_outage(sigma,d1,d2,a,thres)
 % 优化两个阶段的功率分配，所以返回P3和P33
 position = zeros(1,2);
 pa = 0:0.001:1/(1+thres);

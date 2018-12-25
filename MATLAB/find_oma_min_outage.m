@@ -1,3 +1,4 @@
+% 求OMA方案的最佳功率分配方案
 function [outage,position] = find_oma_min_outage(sigma,d1,d2,a,thres)
 % sigma = 1/10^6;
 % d1 = 15;

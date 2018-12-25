@@ -1,3 +1,4 @@
+% 第一种NOMA方案的中断概率三维图
 all clear;
 clc;
 clf;

@@ -1,3 +1,4 @@
+% 第二种NOMA方案的理论中断概率与仿真概率对比
 clc;
 clf;
 all clear;

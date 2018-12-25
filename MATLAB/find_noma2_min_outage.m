@@ -1,4 +1,5 @@
-function [outage,position] = NOMA2_outage(sigma,d1,d2,a,thres)
+% 求第二种NOMA方案的最佳功率分配及相应中断概率
+function [outage,position] = find_noma2_min_outage(sigma,d1,d2,a,thres)
 % 只优化第一阶段的功率分配，所以只返回P1和P2
 position = zeros(1,2)
 p1 = 0:0.0001:1/(1+thres);

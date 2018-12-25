@@ -1,3 +1,4 @@
+% 求在相应功率分配下OMA的中断概率
 function outage = OMA_outage(sigma,d1,d2,a,thres,power)
 % power:功率分配，为一个四元组
 p1 = power(1);

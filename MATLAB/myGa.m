@@ -1,3 +1,4 @@
+% 遗传算法求第一种NOMA方案的最佳功率分配
 clear;
 clf;
 thres = 5;
