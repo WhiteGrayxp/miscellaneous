@@ -6,7 +6,7 @@ import time
 import datetime
 import GetNotification
 
-key = '8edce3ce905a4c1dbb965e6b35c3834d'
+key = 'b0a7ad465db8431981f8a02f489d7b95'
 api_url = 'http://www.tuling123.com/openapi/api'
 
 
@@ -22,7 +22,7 @@ def takePicture():
     print("拍照：")
     print(threading.current_thread().name)
     name = datetime.datetime.now().strftime('%F')
-    path = 'D:\code\Python\\'+name+'.jpg'
+    path = 'G:\Python\Project\\'+name+'.jpg'
     firstTime = True
     while(1):
         (ret, frame) = camera.read()
@@ -41,13 +41,18 @@ def takePicture():
     return path
 
 
+
+
 def detect():
     # print("检测：")
     # print(threading.current_thread().name)
     flag = False
+    # 是否拍摄视频
+    video_flag = False
     frame_count = 0
     last_count = 0
-
+    
+    # 前景帧
     firstFrame = None
     # 查找用户
     owner = itchat.search_friends(name='向平')[0]
@@ -85,6 +90,7 @@ def detect():
                 frame_count += 1
             (x, y, w, h) = cv2.boundingRect(c)
             cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
+
         newTime = time.time()
         if frame_count > last_count:
             # 说明连续两帧监测到异常
@@ -93,16 +99,34 @@ def detect():
             frame_count = last_count = 0
         # 连续出现两帧以上异常，并且隔一分钟以上
         if frame_count >= 2 and newTime - lastTime > 60:
+            # 录制视频的起始时间
+            begin_time = time.time()
+            # 保存视频名称
+            video_name = datetime.datetime.now().strftime('%F') + '.avi'
+            out = cv2.VideoWriter(video_name,cv2.VideoWriter_fourcc('M','J','P','G',),20,(width,height))
+            video_flag = True
+            
             lastTime = newTime
             flag = False
             frame_count = last_count = 0
-            cv2.imwrite("D:\code\Python\warning.jpg", frame)
+            cv2.imwrite("G:\Python\Project\warning.jpg", frame)
             print('发现异常')
             itchat.send_msg('发现异常！', toUserName=owner['UserName'])
-            itchat.send_image('D:\code\Python\warning.jpg',
+            itchat.send_image('G:\Python\Project\warning.jpg',
                               toUserName=owner['UserName'])
+            
 
         cv2.imshow("Detection", frame)
+        
+        if video_flag:
+            end_time = time.time()
+            if end_time - begin_time > 20:
+                video_flag = False
+            else:
+                frame = cv2.flip(frame, 1)
+                out.write(frame)
+                
+
         firstFrame = gray.copy()
 
         if cv2.waitKey(1) & 0xff == ord('q'):
