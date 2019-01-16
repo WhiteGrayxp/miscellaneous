@@ -31,7 +31,7 @@ for loop = 1:8
     rate_noma2(loop) = rate_noma_2;
 end
 figure(1)
-plot(x_axis,rate_noma1,'b-*','LineWidth',2,'MarkerSize',10);hold on
+plot(x_axis,rate_noma1,'b-*','LineWidth',2,'MarkerSize',10);hold on;grid on;
 plot(x_axis,rate_noma2,'b-x','LineWidth',2,'MarkerSize',10);
 plot(x_axis,rate_oma1,'r-*','LineWidth',2,'MarkerSize',10);
 plot(x_axis,rate_oma2,'r-x','LineWidth',2,'MarkerSize',10);
@@ -39,7 +39,7 @@ legend('NOMA1','NOMA2','OMA1','OMA2');
 xlabel('Transmitter SNR(dB)');
 ylabel('Achievable Rate(bit)');
 figure(2)
-plot(x_axis,(rate_noma1+rate_noma2)/2,'b-*','LineWidth',2,'MarkerSize',10);hold on
+plot(x_axis,(rate_noma1+rate_noma2)/2,'b-*','LineWidth',2,'MarkerSize',10);hold on;grid on;
 plot(x_axis,(rate_oma1+rate_oma2)/2,'r-*','LineWidth',2,'MarkerSize',10);
 legend('NOMA','OMA');
 xlabel('Transmitter SNR(dB)');
