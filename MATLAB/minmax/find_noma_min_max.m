@@ -14,7 +14,7 @@ fun = @(x)[1 - exp(sigma*thres*d1^a/(thres*x(1)+x(1)-1));...
     1 - 1/(x(1)-x(2))*(x(1)*exp(-sigma*thres*d1^a/x(1)) - x(2)*exp(-sigma*thres*d1^a/x(2)));...
     1 - 1/(x(1)-x(2))*(x(1)*exp(-sigma*thres*d2^a/x(1)) - x(2)*exp(-sigma*thres*d2^a/x(2)))];
 
-x0 = [0.1;0.1];
+x0 = [0.05;0.05];
 lb = [0;0];
 ub = [1/(1+thres)-sigma;1/(1+thres)-sigma];
 [x,fval] = fminimax(fun,x0,[],[],[],[],lb,ub);

@@ -25,7 +25,7 @@ rate_oma = zeros(1,8);
 for loop = 1:8
     %横坐标
     x_axis(loop) = loop*5 + 50;
-    sigma= 10^(-(loop*5 + 50)/10);  %发射机信噪比为51dB到90dB
+    sigma= 10^(-(loop*5 + 50)/10);  %发射机信噪比为55dB到90dB
     
     % 中断概率对比
     [outage1,position1] = find_noma1_min_outage(sigma,d1,d2,a,thres);
