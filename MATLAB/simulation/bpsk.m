@@ -84,10 +84,10 @@ for loop = 1:60
     rxData_12 = bpskDemodulator(rxData12);
     rxData_22 = bpskDemodulator(rxData22);
     %÷¥––SIC
-    remainData11 = d1^(-0.5*a)*h1.*(sqrt(p1)*modSig1+sqrt(p3)*modSig3-sqrt(p1)*rxData_11);
-    remainData21 = d2^(-0.5*a)*h2.*(sqrt(p1)*modSig1+sqrt(p3)*modSig3-sqrt(p1)*rxData_21);
-    remainData12 = d1^(-0.5*a)*h3.*(sqrt(p2)*modSig2+sqrt(p4)*modSig4-sqrt(p2)*rxData_12);
-    remainData22 = d2^(-0.5*a)*h1.*(sqrt(p2)*modSig2+sqrt(p4)*modSig4-sqrt(p2)*rxData_22);
+    remainData11 = d1^(-0.5*a)*h11.*(sqrt(p1)*modSig1+sqrt(p3)*modSig3-sqrt(p1)*rxData_11);
+    remainData21 = d2^(-0.5*a)*h21.*(sqrt(p1)*modSig1+sqrt(p3)*modSig3-sqrt(p1)*rxData_21);
+    remainData12 = d1^(-0.5*a)*h12.*(sqrt(p2)*modSig2+sqrt(p4)*modSig4-sqrt(p2)*rxData_12);
+    remainData22 = d2^(-0.5*a)*h22.*(sqrt(p2)*modSig2+sqrt(p4)*modSig4-sqrt(p2)*rxData_22);
     
     % ≤–”‡∏…»≈œÓ
     interference11 = remainData11 - d1^(-0.5*a)*p3*h11.*modSig3;
@@ -95,8 +95,8 @@ for loop = 1:60
     interference12 = remainData12 - d1^(-0.5*a)*p4*h12.*modSig4;
     interference22 = remainData22 - d2^(-0.5*a)*p4*h22.*modSig4;
     
-    outage13 = sum((d1^(-1*a)*p3*abs(h11.*modSig3).^2./abs(interference11).^2 + d1^(-1*a)*p4*abs(h12.*modSig4).^2./abs(interference12).^2 < thres))/100000;
-    outage23 = sum((d2^(-1*a)*p3*abs(h21.*modSig3).^2./abs(interference21).^2 + d2^(-1*a)*p4*abs(h22.*modSig4).^2./abs(interference22).^2 < thres))/100000;
+    outage13 = sum(((d1^(-1*a)*p3*abs(h11.*modSig3).^2./abs(interference11).^2 + d1^(-1*a)*p4*abs(h12.*modSig4).^2./abs(interference12).^2) < thres))/100000;
+    outage23 = sum(((d2^(-1*a)*p3*abs(h21.*modSig3).^2./abs(interference21).^2 + d2^(-1*a)*p4*abs(h22.*modSig4).^2./abs(interference22).^2) < thres))/100000;
     
     out_11(loop) = outage11;
     out_22(loop) = outage22;
