@@ -10,7 +10,7 @@ pb = pa;
 d1 = 15;
 d2 = 30;
 a = 3;
-sigma = 1/10^9;
+sigma = 1/10^5;
 
 p1 = thres*d1^a*sigma./(1-p3-thres*p3);
 p2 = thres*d2^a*sigma./(1-p33-thres*p33);
@@ -24,6 +24,8 @@ shading interp;
 surf(p3,p33,p2);hold on;
 surf(p3,p33,p4);
 shading interp;
+
+
 
 figure(2)
 surf(p3,p33,p2);hold on;
