@@ -24,7 +24,7 @@ out_11_ana = zeros(30,1);
 out_22_ana = zeros(30,1);
 out_13_ana = zeros(30,1);
 out_23_ana = zeros(30,1);
-
+noise_power = zeros(30,1);
 for loop = 1:40
     SNR = loop+30;
     sigma = 10^(-1*SNR/10);
@@ -45,6 +45,8 @@ for loop = 1:40
     noise2 = sqrt(sigma/2)*(randn(100000,1)+1j*randn(100000,1));
     noise3 = sqrt(sigma/2)*(randn(100000,1)+1j*randn(100000,1));
     noise4 = sqrt(sigma/2)*(randn(100000,1)+1j*randn(100000,1));
+    
+    noise_power(loop) = mean(abs(noise1).^2);
     
     % 发送各100000符号的两个数据帧（叠加后200000个符号）
     txData1 = randi([0,1],100000,1);
@@ -74,10 +76,10 @@ for loop = 1:40
     h4 = sqrt(0.5)*(randn(100000,1)+1j*randn(100000,1));
     
     % 解码数据
-    rxData11 = bpskDemodulator(conj(h11).*rxSig11);
-    rxData21 = bpskDemodulator(conj(h21).*rxSig21);
-    rxData12 = bpskDemodulator(conj(h12).*rxSig12);
-    rxData22 = bpskDemodulator(conj(h22).*rxSig22);
+    rxData11 = bpskDemodulator((h11.^(-1)).*rxSig11);
+    rxData21 = bpskDemodulator((h21.^(-1)).*rxSig21);
+    rxData12 = bpskDemodulator((h12.^(-1)).*rxSig12);
+    rxData22 = bpskDemodulator((h22.^(-1)).*rxSig22);
     
     rxData_11 = bpskModulator(rxData11);
     rxData_21 = bpskModulator(rxData21);
@@ -93,14 +95,14 @@ for loop = 1:40
 
     
     % 残余干扰项
-    interference11 = remainData11 - d1^(-0.5*a)*sqrt(p3)*h11.*modSig3;
-    interference21 = remainData21 - d2^(-0.5*a)*sqrt(p3)*h21.*modSig3;
-    interference12 = remainData12 - d1^(-0.5*a)*sqrt(p4)*h12.*modSig4;
-    interference22 = remainData22 - d2^(-0.5*a)*sqrt(p4)*h22.*modSig4;
+    interference11 = remainData11 - d1^(-0.5*a)*sqrt(p3)*h11.*modSig3 - noise1;
+    interference21 = remainData21 - d2^(-0.5*a)*sqrt(p3)*h21.*modSig3 - noise2;
+    interference12 = remainData12 - d1^(-0.5*a)*sqrt(p4)*h12.*modSig4 - noise3;
+    interference22 = remainData22 - d2^(-0.5*a)*sqrt(p4)*h22.*modSig4 - noise4;
     
 
-    outage13 = sum(((d1^(-1*a)*p3*abs(h11.*modSig3).^2./abs(interference11).^2 + d1^(-1*a)*p4*abs(h12.*modSig4).^2./abs(interference12).^2) < thres))/100000;
-    outage23 = sum(((d2^(-1*a)*p3*abs(h21.*modSig3).^2./abs(interference21).^2 + d2^(-1*a)*p4*abs(h22.*modSig4).^2./abs(interference22).^2) < thres))/100000;
+    outage13 = sum(((d1^(-1*a)*p3*abs(h11.*modSig3).^2./(abs(interference11).^2 + sigma) + d1^(-1*a)*p4*abs(h12.*modSig4).^2./(abs(interference12).^2 + sigma)) < thres))/100000;
+    outage23 = sum(((d2^(-1*a)*p3*abs(h21.*modSig3).^2./(abs(interference21).^2 + sigma) + d2^(-1*a)*p4*abs(h22.*modSig4).^2./(abs(interference22).^2 + sigma)) < thres))/100000;
 
     
     out_11(loop) = outage11;

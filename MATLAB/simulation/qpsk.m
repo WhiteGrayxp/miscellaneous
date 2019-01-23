@@ -1,4 +1,4 @@
-% 仿真BPSK在实际场景下的中断概率
+% 仿真QPSK在实际场景下的中断概率
 clc;
 clf;
 all clear;
@@ -30,7 +30,7 @@ for loop = 1:40
     x_axis(loop) = SNR;
     
     qpskModulator = comm.QPSKModulator;
-    pskDemodulator = comm.QPSKDemodulator;
+    qpskDemodulator = comm.QPSKDemodulator;
 
     
     %产生信道
@@ -73,10 +73,10 @@ for loop = 1:40
     h4 = sqrt(0.5)*(randn(100000,1)+1j*randn(100000,1));
     
     % 解码数据
-    rxData11 = pskDemodulator(conj(h11).*rxSig11);
-    rxData21 = pskDemodulator(conj(h21).*rxSig21);
-    rxData12 = pskDemodulator(conj(h12).*rxSig12);
-    rxData22 = pskDemodulator(conj(h22).*rxSig22);
+    rxData11 = qpskDemodulator(conj(h11).*rxSig11);
+    rxData21 = qpskDemodulator(conj(h21).*rxSig21);
+    rxData12 = qpskDemodulator(conj(h12).*rxSig12);
+    rxData22 = qpskDemodulator(conj(h22).*rxSig22);
     
     rxData_11 = qpskModulator(rxData11);
     rxData_21 = qpskModulator(rxData21);
@@ -90,13 +90,15 @@ for loop = 1:40
     remainData22 = d2^(-0.5*a)*h22.*(sqrt(p2)*modSig2+sqrt(p4)*modSig4)-d2^(-0.5*a)*sqrt(p2)*h22.*rxData_22+noise4;
     
     % 残余干扰项
-    interference11 = remainData11 - d1^(-0.5*a)*sqrt(p3)*h11.*modSig3;
-    interference21 = remainData21 - d2^(-0.5*a)*sqrt(p3)*h21.*modSig3;
-    interference12 = remainData12 - d1^(-0.5*a)*sqrt(p4)*h12.*modSig4;
-    interference22 = remainData22 - d2^(-0.5*a)*sqrt(p4)*h22.*modSig4;
+    interference11 = remainData11 - d1^(-0.5*a)*sqrt(p3)*h11.*modSig3 - noise1;
+    interference21 = remainData21 - d2^(-0.5*a)*sqrt(p3)*h21.*modSig3 - noise2;
+    interference12 = remainData12 - d1^(-0.5*a)*sqrt(p4)*h12.*modSig4 - noise3;
+    interference22 = remainData22 - d2^(-0.5*a)*sqrt(p4)*h22.*modSig4 - noise4;
     
-    outage13 = sum((d1^(-1*a)*p3*abs(h11).^2./(abs(interference11).^2) + d1^(-1*a)*p4*abs(h12).^2./(abs(interference12).^2)) < thres)/100000;
-    outage23 = sum((d2^(-1*a)*p3*abs(h21).^2./(abs(interference21).^2) + d2^(-1*a)*p4*abs(h22).^2./(abs(interference22).^2)) < thres)/100000;
+
+    outage13 = sum(((d1^(-1*a)*p3*abs(h11.*modSig3).^2./(abs(interference11).^2 + sigma) + d1^(-1*a)*p4*abs(h12.*modSig4).^2./(abs(interference12).^2 + sigma)) < thres))/100000;
+    outage23 = sum(((d2^(-1*a)*p3*abs(h21.*modSig3).^2./(abs(interference21).^2 + sigma) + d2^(-1*a)*p4*abs(h22.*modSig4).^2./(abs(interference22).^2 + sigma)) < thres))/100000;
+
     
     out_11(loop) = outage11;
     out_22(loop) = outage22;
