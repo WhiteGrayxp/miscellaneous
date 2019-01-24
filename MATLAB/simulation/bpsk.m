@@ -25,6 +25,7 @@ out_22_ana = zeros(30,1);
 out_13_ana = zeros(30,1);
 out_23_ana = zeros(30,1);
 noise_power = zeros(30,1);
+
 for loop = 1:40
     SNR = loop+30;
     sigma = 10^(-1*SNR/10);
@@ -66,8 +67,8 @@ for loop = 1:40
     rxSig12 = d1^(-0.5*a)*h12.*(sqrt(p2)*modSig2+sqrt(p4)*modSig4)+noise3;
     rxSig22 = d2^(-0.5*a)*h22.*(sqrt(p2)*modSig2+sqrt(p4)*modSig4)+noise4;
     
-    outage11 = sum((d1^(-1*a)*p1*(abs(h11.*modSig1).^2))<(thres*(d1^(-1*a)*p3*(abs(h11.*modSig3).^2)+abs(noise1).^2)))/100000;
-    outage22 = sum((d2^(-1*a)*p2*(abs(h22.*modSig2).^2))<(thres*(d2^(-1*a)*p4*(abs(h22.*modSig4).^2)+abs(noise4).^2)))/100000;
+    outage11 = sum((d1^(-1*a)*p1*(abs(h11).^2))<(thres*(d1^(-1*a)*p3*(abs(h11).^2)+noise_power(loop))))/100000;
+    outage22 = sum((d2^(-1*a)*p2*(abs(h22).^2))<(thres*(d2^(-1*a)*p4*(abs(h22).^2)+noise_power(loop))))/100000;
     
     % 产生评估信道
     h1 = sqrt(0.5)*(randn(100000,1)+1j*randn(100000,1));
@@ -101,8 +102,8 @@ for loop = 1:40
     interference22 = remainData22 - d2^(-0.5*a)*sqrt(p4)*h22.*modSig4 - noise4;
     
 
-    outage13 = sum(((d1^(-1*a)*p3*abs(h11.*modSig3).^2./(abs(interference11).^2 + sigma) + d1^(-1*a)*p4*abs(h12.*modSig4).^2./(abs(interference12).^2 + sigma)) < thres))/100000;
-    outage23 = sum(((d2^(-1*a)*p3*abs(h21.*modSig3).^2./(abs(interference21).^2 + sigma) + d2^(-1*a)*p4*abs(h22.*modSig4).^2./(abs(interference22).^2 + sigma)) < thres))/100000;
+    outage13 = sum(((d1^(-1*a)*p3*abs(h11.*modSig3).^2./(abs(interference11).^2 + noise_power(loop)) + d1^(-1*a)*p4*abs(h12.*modSig4).^2./(abs(interference12).^2 + noise_power(loop))) < thres))/100000;
+    outage23 = sum(((d2^(-1*a)*p3*abs(h21.*modSig3).^2./(abs(interference21).^2 + noise_power(loop)) + d2^(-1*a)*p4*abs(h22.*modSig4).^2./(abs(interference22).^2 + noise_power(loop))) < thres))/100000;
 
     
     out_11(loop) = outage11;

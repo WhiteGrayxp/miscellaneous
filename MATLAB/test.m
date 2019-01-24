@@ -2,7 +2,7 @@
 all clear;
 clc;
 clf;
-thres = 10;     % ∂‘”¶10∑÷±¥
+thres = 5;     
 pa = 0:0.001:1/(1+thres);
 pb = pa;
 [p3,p33] = meshgrid(pa,pb);
@@ -10,7 +10,7 @@ pb = pa;
 d1 = 15;
 d2 = 30;
 a = 3;
-sigma = 1/10^5;
+sigma = 1/10^9;
 
 p1 = thres*d1^a*sigma./(1-p3-thres*p3);
 p2 = thres*d2^a*sigma./(1-p33-thres*p33);
