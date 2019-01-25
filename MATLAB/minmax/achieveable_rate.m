@@ -18,11 +18,14 @@ for loop = 1:8
     sigma = 10^(-SIR/10);
     rate_oma_1 = log2(1+d1^(-a)/sigma);
     rate_oma_2 = log2(1+d2^(-a)/sigma);
-    [~,position] =  find_noma_min_max(sigma,d1,d2,a,thres);
-    p1 = 1 - position(1);
-    p2 = 1 - position(2);
-    p3 = position(1);
-    p4 = position(2);
+%     [~,position] =  find_noma_min_max(sigma,d1,d2,a,thres);
+    
+    
+%     p3 = position(1);
+%     p4 = position(2);
+    [p3,p4] = solveFunction(sigma,d1,d2,a,thres);
+    p1 = 1 - p3;
+    p2 = 1 - p4;
     rate_noma_1 = log2(1+p1/(p3+d1^a*sigma)) + log2(1+(p3+p4)/(d1^a*sigma));
     rate_noma_2 = log2(1+p2/(p4+d2^a*sigma)) + log2(1+(p3+p4)/(d2^a*sigma));
     rate_oma1(loop) = rate_oma_1;

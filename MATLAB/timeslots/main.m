@@ -1,24 +1,116 @@
-dt = 5*10^6;      %每个用户一帧画面的总数据量：1Mbits
-rate_noma = 20*10^6;        %传输速率：20Mbits/s
-rate_oma = 20*10^6;         %
+dt = 10*10^6;        % 每个用户一帧画面的总数据量：10Mbits
+B = 20*10^6;        % 信道带宽
+d1 = 15;            % 用户1距离基站距离
+d2 = 30;            % 用户2距离基站距离
+thres = 5;          % 解码门限
+a = 3;              % 路径损耗指数
+sigma = 1/10^8;     % 噪声功率
 time_duration = 0.01;       %时隙长度：10ms
 
-t_noma = zeros(1,8);
-t_oma = zeros(1,8);
-x_axis = zeros(1,8);
-for loop = 1:8
-    r = loop/8;
+t_noma = zeros(1,10);
+t_oma = zeros(1,10);
+x_axis = zeros(1,10);
+for loop = 1:10
+    r = loop/10;
     x_axis(loop) = r;
-    if r<=0.5
-        t_n = ceil((2*dt*r/rate_noma+dt*(1-2*r)/rate_noma)/time_duration);
+    [r11,r13,r22,r23] = find_rate(B,sigma,d1,d2,a,thres);
+    r3 = min(r22,r23);
+    % 第一阶段，x1和x3叠加，x2和x3叠加
+    t11 = dt*(1-r)/r11;
+    t22 = dt*(1-r)/r22;
+    t13 = dt*r/r13;
+    t23 = dt*r/r23;
+    t_common = min([t11,t22,max(t13,t23)]);     %公共传输时间1
+    
+    % 根据t_common的大小来分别判断接下来的传输方案
+    
+    % x3数据能传完
+    if t_common == max(t13,t23)
+        x1_remain = dt*(1-r)-r11*t_common;
+        x2_remain = dt*(1-r)-r22*t_common;
+        % 将x1和x2叠加发送，重新优化功率分配及传输速率
+        [r11_new,r22_new] = find_noma2_rate(B,sigma,d1,d2,a,thres);
+        t11_new = x1_remain/r11_new;
+        t22_new = x2_remain/r22_new;
+        
+        t_common_new = min(t11_new,t22_new);        %公共传输时间2
+        
+        %看第二阶段还剩下哪部分数据
+        if t11_new<t22_new
+            % 还剩下x2
+            x2_remain_new = x2_remain-r22_new*t_common_new;
+            r22_new = B*log2(1+1/(d2^a*sigma));
+            t_last = x2_remain_new/r22_new;
+        else
+            % 还剩下x1
+            x1_remain_new = x1_remain-r11_new*t_common_new;
+            r11_new = B*log2(1+1/(d1^a*sigma));
+            t_last = x1_remain_new/r11_new;
+        end
+        
+        time_slots = (2*t_common) + (t_common_new) + (t_last);
+        
+    elseif t_common == t11
+        % x1部分能传完
+        x3_remain = dt*r-r3*t_common;
+        x2_remain = dt*(1-r)-r22*t_common;
+        % 将x2和x3叠加发送，重新优化功率分配及发送速率
+        [r13_new,r22_new,r23_new] = find_noma3_rate(B,sigma,d1,d2,a,thres);
+        
+        r3_new = min(r13_new,r23_new);
+        t3_new = x3_remain/r3_new;
+        t2_new = x2_remain/r22_new;
+        t_common_new = min(t2_new,t3_new);
+        if t3_new<t2_new
+            % 最后还剩下x2
+            x2_remain_new = x2_remain - t_common_new*r22_new;
+            r22_new = B*log2(1+1/(d2^a*sigma));
+            t_last = x2_remain_new/r22_new;
+        else
+            % 最后还剩下x3
+            x3_remain_new = x3_remain - t_common_new*r3_new;
+            r3_new = B*log2(1+1/(d2^a*sigma));
+            t_last = x3_remain_new/r3_new;
+        end
+        
+        time_slots = (2*t_common) + (t_common_new) + (t_last);
+        
     else
-        t_n = ceil((2*dt*(1-r)/rate_noma+dt*(2*r-1)/rate_noma)/time_duration);
+        % x2能传完
+        x3_remain = dt*r-r3*t_common;
+        x1_remain = dt*(1-r)-r11*t_common;
+        % 将x1和x3叠加发送，重新优化功率分配及发送速率
+        [r11_new,r13_new,r23_new] = find_noma3_rate_2(B,sigma,d1,d2,a,thres);
+        
+        r3_new = min(r13_new,r23_new);
+        t3_new = x3_remain/r3_new;
+        t1_new = x1_remain/r11_new;
+        t_common_new = min(t1_new,t3_new);
+        if t3_new<t1_new
+            % 最后还剩下x1
+            x1_remain_new = x1_remain - t_common_new*r11_new;
+            r11_new = B*log2(1+1/(d1^a*sigma));
+            t_last = x1_remain_new/r11_new;
+        else
+            % 最后还剩下x3
+            x3_remain_new = x3_remain - t_common_new*r3_new;
+            r3_new = B*log2(1+1/(d2^a*sigma));
+            t_last = x3_remain_new/r3_new;
+        end
+        
+        time_slots = (2*t_common) + (t_common_new) + (t_last);
     end
-    t_noma(loop) = t_n;
-    t_oma(loop) = ceil((2*dt*(1-r)/rate_oma+dt*r/rate_oma)/time_duration);
+    t_noma(loop) = time_slots;  
+    
+    r11_oma = B*log2(1+1/(d1^a*sigma));
+    r22_oma = B*log2(1+1/(d2^a*sigma));
+    r3_oma = min(r11_oma,r22_oma);
+    time_oma = dt*(1-r)/r11_oma + dt*(1-r)/r22_oma + dt*r/r3_oma;
+    t_oma(loop) = time_oma;
+    
 end
 plot(x_axis,t_noma,'b-*','LineWidth',2,'MarkerSize',10),hold on;
 plot(x_axis,t_oma,'r-*','LineWidth',2,'MarkerSize',10);
 xlabel('重叠区域比例(%)');
-ylabel('时隙数');
+ylabel('传输时间');
 legend('NOMA','OMA');
