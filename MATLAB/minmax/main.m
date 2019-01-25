@@ -37,10 +37,10 @@ for loop = 1:8
     fprintf('代数解p3：%.3f\n',x);
     fprintf('代数解p4：%.3f\n',y);
 end
-semilogy(x_axis,out_noma_minmax,'b-*','LineWidth',2,'MarkerSize',10);hold on;
-semilogy(x_axis,out_oma_minmax,'r-*','LineWidth',2,'MarkerSize',10);
-semilogy(x_axis,out_noma_minmax_asym,'c-*','LineWidth',2,'MarkerSize',10);
-semilogy(x_axis,out_noma_algebra,'y-.o','LineWidth',2,'MarkerSize',10);
-legend('NOMA','OMA','NOMA\_asym','NOMA\_algebra');
+% semilogy(x_axis,out_noma_minmax,'b-*','LineWidth',2,'MarkerSize',10);hold on;
+semilogy(x_axis,out_oma_minmax,'r-*','LineWidth',2,'MarkerSize',10);hold on;
+semilogy(x_axis,out_noma_minmax_asym,'c-','LineWidth',2,'MarkerSize',10);
+semilogy(x_axis,out_noma_algebra,'bo','LineWidth',2,'MarkerSize',10);
+legend('OMA','NOMA\_asym','NOMA\_algebra');
 ylabel('Outage probability(%)');
 xlabel('Transmitter SNR(dB)');
