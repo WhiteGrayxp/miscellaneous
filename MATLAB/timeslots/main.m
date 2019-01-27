@@ -1,4 +1,4 @@
-dt = 10*10^6;        % 每个用户一帧画面的总数据量：10Mbits
+dt = 20*10^6;        % 每个用户一帧画面的总数据量：10Mbits
 B = 20*10^6;        % 信道带宽
 d1 = 15;            % 用户1距离基站距离
 d2 = 30;            % 用户2距离基站距离
@@ -7,25 +7,26 @@ a = 3;              % 路径损耗指数
 sigma = 1/10^8;     % 噪声功率
 time_duration = 0.01;       %时隙长度：10ms
 
-t_noma = zeros(1,10);
-t_oma = zeros(1,10);
-x_axis = zeros(1,10);
-for loop = 1:10
-    r = loop/10;
+t_noma = zeros(1,11);
+t_oma = zeros(1,11);
+x_axis = zeros(1,11);
+for loop = 1:11
+    r = (loop-1)/10;
     x_axis(loop) = r;
     [r11,r13,r22,r23] = find_rate(B,sigma,d1,d2,a,thres);
-    r3 = min(r22,r23);
+    r11 = 0.5*r11;
+    r22 = 0.5*r22;
+    r3 = min(r13,r23);
     % 第一阶段，x1和x3叠加，x2和x3叠加
     t11 = dt*(1-r)/r11;
     t22 = dt*(1-r)/r22;
-    t13 = dt*r/r13;
-    t23 = dt*r/r23;
-    t_common = min([t11,t22,max(t13,t23)]);     %公共传输时间1
+    t3 = dt*r/r3;
+    t_common = min([t11,t22,t3]);     %公共传输时间1
     
     % 根据t_common的大小来分别判断接下来的传输方案
     
     % x3数据能传完
-    if t_common == max(t13,t23)
+    if t_common == t3
         x1_remain = dt*(1-r)-r11*t_common;
         x2_remain = dt*(1-r)-r22*t_common;
         % 将x1和x2叠加发送，重新优化功率分配及传输速率
@@ -47,8 +48,6 @@ for loop = 1:10
             r11_new = B*log2(1+1/(d1^a*sigma));
             t_last = x1_remain_new/r11_new;
         end
-        
-        time_slots = (2*t_common) + (t_common_new) + (t_last);
         
     elseif t_common == t11
         % x1部分能传完
@@ -73,8 +72,6 @@ for loop = 1:10
             t_last = x3_remain_new/r3_new;
         end
         
-        time_slots = (2*t_common) + (t_common_new) + (t_last);
-        
     else
         % x2能传完
         x3_remain = dt*r-r3*t_common;
@@ -97,9 +94,8 @@ for loop = 1:10
             r3_new = B*log2(1+1/(d2^a*sigma));
             t_last = x3_remain_new/r3_new;
         end
-        
-        time_slots = (2*t_common) + (t_common_new) + (t_last);
     end
+    time_slots = (t_common) + (t_common_new) + (t_last);
     t_noma(loop) = time_slots;  
     
     r11_oma = B*log2(1+1/(d1^a*sigma));
@@ -109,8 +105,8 @@ for loop = 1:10
     t_oma(loop) = time_oma;
     
 end
-plot(x_axis,t_noma,'b-*','LineWidth',2,'MarkerSize',10),hold on;
-plot(x_axis,t_oma,'r-*','LineWidth',2,'MarkerSize',10);
+plot(x_axis,t_noma*1000,'b-*','LineWidth',2,'MarkerSize',10),hold on;
+plot(x_axis,t_oma*1000,'r-*','LineWidth',2,'MarkerSize',10);
 xlabel('重叠区域比例(%)');
-ylabel('传输时间');
+ylabel('传输时间(ms)');
 legend('NOMA','OMA');
