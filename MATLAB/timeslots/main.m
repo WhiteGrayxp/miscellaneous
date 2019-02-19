@@ -1,5 +1,5 @@
-dt = 20*10^6;        % 每个用户一帧画面的总数据量：10Mbits
-B = 20*10^6;        % 信道带宽
+dt = 1*10^6;        % 每个用户一帧画面的总数据量：10Mbits
+B = 1.4*10^6/72;       % 信道带宽
 d1 = 15;            % 用户1距离基站距离
 d2 = 30;            % 用户2距离基站距离
 thres = 5;          % 解码门限
@@ -12,11 +12,11 @@ t_oma = zeros(1,11);
 x_axis = zeros(1,11);
 for loop = 1:11
     r = (loop-1)/10;
-    x_axis(loop) = r;
+    x_axis(loop) = r*100;
     [r11,r13,r22,r23] = find_rate(B,sigma,d1,d2,a,thres);
     r11 = 0.5*r11;
     r22 = 0.5*r22;
-    r3 = min(r13,r23);
+    r3 = 0.5*min(r13,r23);
     % 第一阶段，x1和x3叠加，x2和x3叠加
     t11 = dt*(1-r)/r11;
     t22 = dt*(1-r)/r22;
@@ -105,8 +105,8 @@ for loop = 1:11
     t_oma(loop) = time_oma;
     
 end
-plot(x_axis,t_noma*1000,'b-*','LineWidth',2,'MarkerSize',10),hold on;
-plot(x_axis,t_oma*1000,'r-*','LineWidth',2,'MarkerSize',10);
+plot(x_axis,t_noma,'b-*','LineWidth',2,'MarkerSize',10),hold on;
+plot(x_axis,t_oma,'r-*','LineWidth',2,'MarkerSize',10);
 xlabel('重叠区域比例(%)');
-ylabel('传输时间(ms)');
+ylabel('传输时间(s)');
 legend('NOMA','OMA');
