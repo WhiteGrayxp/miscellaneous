@@ -55,10 +55,10 @@ for loop = 1:8
     
     p1 = position2(1);
     p2 = position2(2);
-    rate_noma2 = 0.5*(log2(1+p1/(d1^a*sigma)) + log2(1+p2/(p1+d2^a*sigma)) + 0.5*(log2(1+1/(d1^a*sigma)) + log2(1+1/(d2^a*sigma))));
+    rate_noma2 = 0.5*(log2(1+p1/(d1^a*sigma)) + log2(1+p2/(p1+d2^a*sigma)) + log2(1+1/(d1^a*sigma)) + log2(1+1/(d2^a*sigma)));
    
     
-    rate_oma_temp = 0.5*(log2(1+d1^(-a)/sigma) + log2(1+d2^(-a)/sigma));
+    rate_oma_temp = 2/3*(log2(1+d1^(-a)/sigma) + log2(1+d2^(-a)/sigma));
     
     rate_noma_1(loop) = rate_noma1;
     rate_noma_1_asymp(loop) = rate_noma3;
