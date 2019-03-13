@@ -10,13 +10,13 @@ time_duration = 0.01;       %时隙长度：10ms
 t_noma = zeros(1,11);
 t_oma = zeros(1,11);
 x_axis = zeros(1,11);
+
 for loop = 1:11
     r = (loop-1)/10;
     x_axis(loop) = r*100;
-    [r11,r13,r22,r23] = find_rate(B,sigma,d1,d2,a,thres);
-    r11 = 0.5*r11;
-    r22 = 0.5*r22;
-    r3 = 0.5*min(r13,r23);
+    [~,p] = find_noma3_min_max(sigma,d1,d2,a,thres);
+    [r11,r13,r22,r23] = find_rate_noma3(p,B,sigma,d1,d2,a,thres);
+    r3 = min(r13,r23);
     % 第一阶段，x1和x3叠加，x2和x3叠加
     t11 = dt*(1-r)/r11;
     t22 = dt*(1-r)/r22;
@@ -30,7 +30,7 @@ for loop = 1:11
         x1_remain = dt*(1-r)-r11*t_common;
         x2_remain = dt*(1-r)-r22*t_common;
         % 将x1和x2叠加发送，重新优化功率分配及传输速率
-        [r11_new,r22_new] = find_noma2_rate(B,sigma,d1,d2,a,thres);
+        [r11_new,r22_new] = find_noma_rate_12(B,sigma,d1,d2,a,thres);
         t11_new = x1_remain/r11_new;
         t22_new = x2_remain/r22_new;
         
@@ -54,7 +54,7 @@ for loop = 1:11
         x3_remain = dt*r-r3*t_common;
         x2_remain = dt*(1-r)-r22*t_common;
         % 将x2和x3叠加发送，重新优化功率分配及发送速率
-        [r13_new,r22_new,r23_new] = find_noma3_rate(B,sigma,d1,d2,a,thres);
+        [r13_new,r22_new,r23_new] = find_noma_rate_23(B,sigma,d1,d2,a,thres);
         
         r3_new = min(r13_new,r23_new);
         t3_new = x3_remain/r3_new;
@@ -77,7 +77,7 @@ for loop = 1:11
         x3_remain = dt*r-r3*t_common;
         x1_remain = dt*(1-r)-r11*t_common;
         % 将x1和x3叠加发送，重新优化功率分配及发送速率
-        [r11_new,r13_new,r23_new] = find_noma3_rate_2(B,sigma,d1,d2,a,thres);
+        [r11_new,r13_new,r23_new] = find_noma_rate_13(B,sigma,d1,d2,a,thres);
         
         r3_new = min(r13_new,r23_new);
         t3_new = x3_remain/r3_new;
