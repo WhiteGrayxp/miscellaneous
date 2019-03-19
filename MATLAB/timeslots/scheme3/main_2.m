@@ -10,7 +10,6 @@ time_duration = 0.01;       %时隙长度：10ms
 t_noma = zeros(1,11);
 t_oma = zeros(1,11);
 x_axis = zeros(1,11);
-
 r11_oma = B*log2(1+1/(d1^a*sigma));
 r22_oma = B*log2(1+1/(d2^a*sigma));
 r3_oma = min(r11_oma,r22_oma);
@@ -19,11 +18,9 @@ r3_oma = min(r11_oma,r22_oma);
 for loop = 1:11
     r = (loop-1)/10;
     x_axis(loop) = r*100;
-    [r11,r13,r22,r23] = find_rate(B,sigma,d1,d2,a,thres);
-    r11 = 0.5*r11;
-    r22 = 0.5*r22;
-    r13 = 0.5*r13;
-    r23 = 0.5*r23;
+    [~,p] = find_noma3_min_max(sigma,d1,d2,a,thres);
+    [r11,r13,r22,r23] = find_rate_noma3(p,B,sigma,d1,d2,a,thres);
+    r3 = min(r13,r23);
     % 第一阶段，x1和x3叠加，x2和x3叠加
     t11 = dt*(1-r)/r11;
     t22 = dt*(1-r)/r22;
@@ -51,7 +48,7 @@ for loop = 1:11
         x2_remain = dt*(1-r)-r22*t_common;
         
         t_common_new = x2_remain/r22_oma;
-        t_last = max(x13_remain/r11_oma, x23_remain/r22_oma);
+        t_last = max(x13_remain, x23_remain)/r3_oma;
         
     else
         % x2能传完
@@ -60,7 +57,7 @@ for loop = 1:11
         x1_remain = dt*(1-r)-r11*t_common;
         
         t_common_new = x1_remain/r11_oma;
-        t_last = max(x13_remain/r11_oma, x23_remain/r22_oma);
+        t_last = max(x13_remain, x23_remain)/r3_oma;
     end
     time_slots = (t_common) + (t_common_new) + (t_last);
     t_noma(loop) = time_slots;  

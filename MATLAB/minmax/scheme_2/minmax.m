@@ -4,7 +4,7 @@ clear;
 clc;
 clf;
 d1 = 15;
-d2 = 39;
+d2 = 30;
 a = 3;
 thres = 5;
 
