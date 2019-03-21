@@ -14,20 +14,20 @@ p3 = 0.15;
 p4 = 0.1;
 
 
-out_11 = zeros(30,1);
-out_22 = zeros(30,1);
-out_13 = zeros(30,1);
-out_23 = zeros(30,1);
-x_axis = zeros(30,1);
+out_11 = zeros(8,1);
+out_22 = zeros(8,1);
+out_13 = zeros(8,1);
+out_23 = zeros(8,1);
+x_axis = zeros(8,1);
 
-out_11_ana = zeros(30,1);
-out_22_ana = zeros(30,1);
-out_13_ana = zeros(30,1);
-out_23_ana = zeros(30,1);
-noise_power = zeros(30,1);
+out_11_ana = zeros(8,1);
+out_22_ana = zeros(8,1);
+out_13_ana = zeros(8,1);
+out_23_ana = zeros(8,1);
+noise_power = zeros(8,1);
 
-for loop = 1:40
-    SNR = loop+30;
+for loop = 1:8
+    SNR = loop*5+40;
     sigma = 10^(-1*SNR/10);
     x_axis(loop) = SNR;
     
@@ -96,10 +96,16 @@ for loop = 1:40
 
     
     % ≤–”‡∏…»≈œÓ
-    interference11 = remainData11 - d1^(-0.5*a)*sqrt(p3)*h11.*modSig3 - noise1;
-    interference21 = remainData21 - d2^(-0.5*a)*sqrt(p3)*h21.*modSig3 - noise2;
-    interference12 = remainData12 - d1^(-0.5*a)*sqrt(p4)*h12.*modSig4 - noise3;
-    interference22 = remainData22 - d2^(-0.5*a)*sqrt(p4)*h22.*modSig4 - noise4;
+    power = 1/10^8;
+    interference11 = sqrt(power/2)*(randn(100000,1)+1j*randn(100000,1));
+    interference21 = sqrt(power/2)*(randn(100000,1)+1j*randn(100000,1));
+    interference12 = sqrt(power/2)*(randn(100000,1)+1j*randn(100000,1));
+    interference22 = sqrt(power/2)*(randn(100000,1)+1j*randn(100000,1));
+    
+%     interference11 = remainData11 - d1^(-0.5*a)*sqrt(p3)*h11.*modSig3 - noise1;
+%     interference21 = remainData21 - d2^(-0.5*a)*sqrt(p3)*h21.*modSig3 - noise2;
+%     interference12 = remainData12 - d1^(-0.5*a)*sqrt(p4)*h12.*modSig4 - noise3;
+%     interference22 = remainData22 - d2^(-0.5*a)*sqrt(p4)*h22.*modSig4 - noise4;
     
 
     outage13 = sum(((d1^(-1*a)*p3*abs(h11.*modSig3).^2./(abs(interference11).^2 + noise_power(loop)) + d1^(-1*a)*p4*abs(h12.*modSig4).^2./(abs(interference12).^2 + noise_power(loop))) < thres))/100000;
