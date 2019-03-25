@@ -34,6 +34,8 @@ outage_simu13_ip = zeros(8,1);
 outage_simu23_ip = zeros(8,1);
 outage_theo13_ip = zeros(8,1);
 outage_theo23_ip = zeros(8,1);
+outage_asym13_ip = zeros(8,1);
+outage_asym23_ip = zeros(8,1);
 x_axis = zeros(8,1);
 
 for i = 1:10
@@ -93,12 +95,15 @@ for i = 1:10
         % imperfect SIC
         c = p3 - thres*b^2*p1;
         d = p33 - thres*b^2*p2;
-        outage_theo13_ip(loop) = outage_theo13_ip(loop)+ 1 - (c*exp(-1*thres*d1^a*sigma/c) - d*exp(-1*thres*d1^a*sigma/d))/(c-d);
-        outage_theo23_ip(loop) = outage_theo23_ip(loop)+ 1 - (c*exp(-1*thres*d2^a*sigma/c) - d*exp(-1*thres*d2^a*sigma/d))/(c-d);
+        outage_theo13_ip(loop) = outage_theo13_ip(loop) + 1 - (c*exp(-1*thres*d1^a*sigma/c) - d*exp(-1*thres*d1^a*sigma/d))/(c-d);
+        outage_theo23_ip(loop) = outage_theo23_ip(loop) + 1 - (c*exp(-1*thres*d2^a*sigma/c) - d*exp(-1*thres*d2^a*sigma/d))/(c-d);
         outage_simu13_ip_temp = sum(y5<thres*(sigma+b^2*(y1+y7)))/1000000;
         outage_simu23_ip_temp = sum(y6<thres*(sigma+b^2*(y3+y8)))/1000000;
-        outage_simu13_ip(loop) = outage_simu13_ip(loop)+ outage_simu13_ip_temp;
-        outage_simu23_ip(loop) = outage_simu23_ip(loop)+ outage_simu23_ip_temp;
+        outage_simu13_ip(loop) = outage_simu13_ip(loop) + outage_simu13_ip_temp;
+        outage_simu23_ip(loop) = outage_simu23_ip(loop) + outage_simu23_ip_temp;
+        
+        outage_asym13_ip(loop) = outage_asym13_ip(loop) + (thres*d1^a*sigma)^2/(2*c*d);
+        outage_asym23_ip(loop) = outage_asym23_ip(loop) + (thres*d2^a*sigma)^2/(2*c*d);
     end
 end
 
@@ -123,10 +128,11 @@ title('UE2-X2');
 figure(3);
 semilogy(x_axis,outage_theo13/10,'r-*','LineWidth',1,'MarkerSize',10),hold on;
 semilogy(x_axis,outage_simu13/10,'r-d','LineWidth',1,'MarkerSize',10);
-semilogy(x_axis,outage_asym13/10,'b--','LineWidth',1,'MarkerSize',10);
+semilogy(x_axis,outage_asym13/10,'b','LineWidth',1,'MarkerSize',10);
 semilogy(x_axis,outage_theo13_ip/10,'k-.o','LineWidth',1,'MarkerSize',10);
 semilogy(x_axis,outage_simu13_ip/10,'k-.+','LineWidth',1,'MarkerSize',10);
-legend('Theory-pSIC','Simulation-pSIC','Asymptotic','Theory-ipSIC','Simulation-ipSIC');
+semilogy(x_axis,outage_asym13_ip/10,'b--','LineWidth',1,'MarkerSize',10);
+legend('Theory-pSIC','Simulation-pSIC','Asymptotic-pSIC','Theory-ipSIC','Simulation-ipSIC','Asymptotic-ipSIC');
 xlabel('Transmitter SNR(dB)');
 ylabel('Outage Probability');
 title('UE1-X3');
@@ -134,10 +140,11 @@ title('UE1-X3');
 figure(4);
 semilogy(x_axis,outage_theo23/10,'r-*','LineWidth',1,'MarkerSize',10),hold on;
 semilogy(x_axis,outage_simu23/10,'r-d','LineWidth',1,'MarkerSize',10);
-semilogy(x_axis,outage_asym23/10,'b--','LineWidth',1,'MarkerSize',10);
+semilogy(x_axis,outage_asym23/10,'b','LineWidth',1,'MarkerSize',10);
 semilogy(x_axis,outage_theo23_ip/10,'k-.o','LineWidth',1,'MarkerSize',10);
 semilogy(x_axis,outage_simu23_ip/10,'k-.+','LineWidth',1,'MarkerSize',10);
-legend('Theory-pSIC','Simulation-pSIC','Asymptotic','Theory-ipSIC','Simulation-ipSIC');
+semilogy(x_axis,outage_asym23_ip/10,'b--','LineWidth',1,'MarkerSize',10);
+legend('Theory-pSIC','Simulation-pSIC','Asymptotic-pSIC','Theory-ipSIC','Simulation-ipSIC','Asymptotic-ipSIC');
 xlabel('Transmitter SNR(dB)');
 ylabel('Outage Probability');
 title('UE2-X3');
