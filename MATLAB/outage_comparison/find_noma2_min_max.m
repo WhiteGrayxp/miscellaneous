@@ -9,8 +9,8 @@ fun = @(x)[1 - exp(-1*d1^a*thres*sigma/x(1)),...
 x0 = [0.05,0.95];
 Aeq = [1,1];
 beq = 1;
-lb = [0,1/(1+thres)];
-ub = [1/(1+thres),1];
+lb = [0.001,1/(1+thres)];
+ub = [1/(1+thres)-0.001,1-10*sigma];
 [x,fval] = fminimax(fun,x0,[],[],Aeq,beq,lb,ub);
 
 outage = fval;

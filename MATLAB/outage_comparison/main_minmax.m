@@ -154,7 +154,7 @@ legend('NOMA1-OUT11','NOMA2-OUT11','NOMA1-OUT22','NOMA2-OUT22','NOMA1-OUT13','NO
 title(['d1=',num2str(d1) , ' d2=',num2str(d2) , ' minmax']);
 
 d1 = 10;
-d2 = 45;
+d2 = 50;
 a = 3;
 thres = 5;
 
@@ -304,7 +304,7 @@ legend('NOMA1-OUT11','NOMA2-OUT11','NOMA1-OUT22','NOMA2-OUT22','NOMA1-OUT13','NO
 title(['d1=',num2str(d1) , ' d2=',num2str(d2) , ' minmax']);
 
 d1 = 20;
-d2 = 45;
+d2 = 50;
 a = 3;
 thres = 5;
 
@@ -404,7 +404,7 @@ legend('NOMA1-OUT11','NOMA2-OUT11','NOMA1-OUT22','NOMA2-OUT22','NOMA1-OUT13','NO
 title(['d1=',num2str(d1) , ' d2=',num2str(d2) , ' minmax']);
 
 d1 = 30;
-d2 = 45;
+d2 = 50;
 a = 3;
 thres = 5;
 
@@ -454,7 +454,7 @@ legend('NOMA1-OUT11','NOMA2-OUT11','NOMA1-OUT22','NOMA2-OUT22','NOMA1-OUT13','NO
 title(['d1=',num2str(d1) , ' d2=',num2str(d2) , ' minmax']);
 
 d1 = 40;
-d2 = 45;
+d2 = 50;
 a = 3;
 thres = 5;
 

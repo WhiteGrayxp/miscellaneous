@@ -109,19 +109,19 @@ end
 
 figure(1);
 semilogy(x_axis,outage_theo11/10,'-','LineWidth',1,'MarkerSize',10),hold on;
-semilogy(x_axis,outage_simu11/10,'.','LineWidth',1,'MarkerSize',10);
+semilogy(x_axis,outage_simu11/10,'o','LineWidth',1,'MarkerSize',10);
 semilogy(x_axis,outage_asym11/10,'-d','LineWidth',1,'MarkerSize',10);
-legend('Theory','Simulation','Asymptotic');
-xlabel('Transmitter SNR(dB)');
+legend('Analysis','Simulation','Asymptotic');
+xlabel('Transmitter SNR (dB)');
 ylabel('Outage Probability');
 title('UE1-X1');
 
 figure(2);
 semilogy(x_axis,outage_theo22/10,'-','LineWidth',1,'MarkerSize',10),hold on;
-semilogy(x_axis,outage_simu22/10,'.','LineWidth',1,'MarkerSize',10);
+semilogy(x_axis,outage_simu22/10,'o','LineWidth',1,'MarkerSize',10);
 semilogy(x_axis,outage_asym22/10,'-d','LineWidth',1,'MarkerSize',10);
-legend('Theory','Simulation','Asymptotic');
-xlabel('Transmitter SNR(dB)');
+legend('Analysis','Simulation','Asymptotic');
+xlabel('Transmitter SNR (dB)');
 ylabel('Outage Probability');
 title('UE2-X2');
 
@@ -132,8 +132,8 @@ semilogy(x_axis,outage_asym13/10,'b','LineWidth',1,'MarkerSize',10);
 semilogy(x_axis,outage_theo13_ip/10,'k-.o','LineWidth',1,'MarkerSize',10);
 semilogy(x_axis,outage_simu13_ip/10,'k-.+','LineWidth',1,'MarkerSize',10);
 semilogy(x_axis,outage_asym13_ip/10,'b--','LineWidth',1,'MarkerSize',10);
-legend('Theory-pSIC','Simulation-pSIC','Asymptotic-pSIC','Theory-ipSIC','Simulation-ipSIC','Asymptotic-ipSIC');
-xlabel('Transmitter SNR(dB)');
+legend('Analysis-pSIC','Simulation-pSIC','Asymptotic-pSIC','Analysis-ipSIC','Simulation-ipSIC','Asymptotic-ipSIC');
+xlabel('Transmitter SNR (dB)');
 ylabel('Outage Probability');
 title('UE1-X3');
 
@@ -144,8 +144,8 @@ semilogy(x_axis,outage_asym23/10,'b','LineWidth',1,'MarkerSize',10);
 semilogy(x_axis,outage_theo23_ip/10,'k-.o','LineWidth',1,'MarkerSize',10);
 semilogy(x_axis,outage_simu23_ip/10,'k-.+','LineWidth',1,'MarkerSize',10);
 semilogy(x_axis,outage_asym23_ip/10,'b--','LineWidth',1,'MarkerSize',10);
-legend('Theory-pSIC','Simulation-pSIC','Asymptotic-pSIC','Theory-ipSIC','Simulation-ipSIC','Asymptotic-ipSIC');
-xlabel('Transmitter SNR(dB)');
+legend('Analysis-pSIC','Simulation-pSIC','Asymptotic-pSIC','Analysis-ipSIC','Simulation-ipSIC','Asymptotic-ipSIC');
+xlabel('Transmitter SNR (dB)');
 ylabel('Outage Probability');
 title('UE2-X3');
 
