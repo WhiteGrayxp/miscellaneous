@@ -1,10 +1,10 @@
-% 比较两种NOMA方案以及OMA的平均吞吐量（控制变量为距离）
+% 比较两种NOMA方案以及OMA的平均吞吐量（对距离取平均）
 % 16QAM, 3/4 code rate
 clear;
 clc;
 clf;
 a = 3;
-thres = 7;
+thres = 7/0.396;
 n = 3;
 x_axis = zeros(8,1);
 
@@ -33,7 +33,7 @@ for loop = 1:8
             [outage_4,p4] = find_noma2_min_max(sigma,d1,d2,a,thres);
             out_2_minmax(loop) = out_2_minmax(loop) + 4*n - n*(sum(outage_4) + 1 - exp(-1*d1^a*thres*sigma) + 1 - exp(-1*d2^a*thres*sigma));
             % OMA
-            out_3(loop) = out_1_linear(loop) + 4*n - n*2*(1 - exp(-1*d1^a*thres*sigma) + 1 - exp(-1*d2^a*thres*sigma));
+            out_3(loop) = out_3(loop) + 4*n - n*2*(1 - exp(-1*d1^a*thres*sigma) + 1 - exp(-1*d2^a*thres*sigma));
         end
     end
 end
