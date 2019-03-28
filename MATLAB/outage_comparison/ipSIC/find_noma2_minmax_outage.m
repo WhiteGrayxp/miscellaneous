@@ -1,4 +1,4 @@
-function [outage] = find_noma2_minmax_outage(sigma,a,d1,d2,thres,b)
+function [outage,asym] = find_noma2_minmax_outage(sigma,a,d1,d2,thres,b)
 % x = p1
 fun = @(x)[d1^a*thres*sigma/(x-thres*(1-x)*b^2),...
            d2^a*thres*sigma/(1-thres*x-x)];
@@ -15,3 +15,9 @@ outage(1) = 1 - exp(d1^a*thres*sigma/(thres*(1-x)*b^2-x));
 outage(2) = 1- exp(d2^a*thres*sigma/(thres*x+x-1));
 outage(3) = 1 - exp(-1*d1^a*thres*sigma);
 outage(4) = 1 - exp(-1*d2^a*thres*sigma);
+
+asym = zeros(4,1);
+asym(1) = (-1*d1^a*thres*sigma/(thres*(1-x)*b^2-x));
+asym(2) = (-1*d2^a*thres*sigma/(thres*x+x-1));
+asym(3) = d1^a*thres*sigma;
+asym(4) = d2^a*thres*sigma;
