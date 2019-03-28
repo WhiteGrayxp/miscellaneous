@@ -27,17 +27,17 @@ for loop = 1:8
              n = 1.5;
              thres = (2^n-1)/0.396;
              b = 0.1;
-             out_1_ipSIC_1(loop) = out_1_ipSIC_1(loop) + 4*n - n*find_noma1_linear_outage(sigma,a,d1,d2,thres,b);
-             out_2_ipSIC_1(loop) = out_2_ipSIC_1(loop) + 4*n - n*find_noma2_linear_outage(sigma,a,d1,d2,thres,b);
-             out_1_pSIC_1(loop) = out_1_pSIC_1(loop) + 4*n - n*find_noma1_linear_outage(sigma,a,d1,d2,thres,0);
-             out_2_pSIC_1(loop) = out_2_pSIC_1(loop) + 4*n - n*find_noma2_linear_outage(sigma,a,d1,d2,thres,0);
+             out_1_ipSIC_1(loop) = out_1_ipSIC_1(loop) + 4*n - n*sum(find_noma1_linear_outage(sigma,a,d1,d2,thres,b));
+             out_2_ipSIC_1(loop) = out_2_ipSIC_1(loop) + 4*n - n*sum(find_noma2_linear_outage(sigma,a,d1,d2,thres,b));
+             out_1_pSIC_1(loop) = out_1_pSIC_1(loop) + 4*n - n*sum(find_noma1_linear_outage(sigma,a,d1,d2,thres,0));
+             out_2_pSIC_1(loop) = out_2_pSIC_1(loop) + 4*n - n*sum(find_noma2_linear_outage(sigma,a,d1,d2,thres,0));
              out_3(loop) = out_3(loop) + 4*n - n*2*(1 - exp(-1*d1^a*thres*sigma) + 1 - exp(-1*d2^a*thres*sigma));
             % n=1.5 b=0.2
              n = 1.5;
              thres = (2^n-1)/0.396;
              b = 0.2;
-             out_1_ipSIC_2(loop) = out_1_ipSIC_2(loop) + 4*n - n*find_noma1_linear_outage(sigma,a,d1,d2,thres,b);
-             out_2_ipSIC_2(loop) = out_2_ipSIC_2(loop) + 4*n - n*find_noma2_linear_outage(sigma,a,d1,d2,thres,b);
+             out_1_ipSIC_2(loop) = out_1_ipSIC_2(loop) + 4*n - n*sum(find_noma1_linear_outage(sigma,a,d1,d2,thres,b));
+             out_2_ipSIC_2(loop) = out_2_ipSIC_2(loop) + 4*n - n*sum(find_noma2_linear_outage(sigma,a,d1,d2,thres,b));
              
         end
     end
@@ -52,7 +52,7 @@ out_1_ipSIC_2 = out_1_ipSIC_2/i/2;
 out_2_ipSIC_2 = out_2_ipSIC_2/i/2;
 
 
-figure(1);
+figure();
 plot(x_axis,out_1_pSIC_1,'r-s','LineWidth',1,'MarkerSize',10),hold on;grid on;
 plot(x_axis,out_2_pSIC_1,'r-d','LineWidth',1,'MarkerSize',10);
 plot(x_axis,out_1_ipSIC_1,'k-.p','LineWidth',1,'MarkerSize',10);
@@ -61,6 +61,6 @@ plot(x_axis,out_2_ipSIC_1,'k-.*','LineWidth',1,'MarkerSize',10);
 plot(x_axis,out_1_ipSIC_2,'g-.p','LineWidth',1,'MarkerSize',10);
 plot(x_axis,out_2_ipSIC_2,'g-.*','LineWidth',1,'MarkerSize',10);
 plot(x_axis,out_3,'b-o','LineWidth',1,'MarkerSize',10);
-legend('NOMA1 pSIC b=0.1','NOMA2 pSIC b=0.1','NOMA1 ipSIC b=0.1','NOMA2 ipSIC b=0.1','NOMA1 ipSIC b=0.2','NOMA2 ipSIC b=0.2','OMA');
+legend('NOMA1 pSIC','NOMA2 pSIC','NOMA1 ipSIC b=0.1','NOMA2 ipSIC b=0.1','NOMA1 ipSIC b=0.2','NOMA2 ipSIC b=0.2','OMA');
 xlabel('Transmitter SNR (dB)');
 ylabel('Throughput b/s/Hz');

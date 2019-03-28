@@ -1,17 +1,17 @@
-function [outage] = find_noma1_linear_outage(sigma,a,d1,d2,thres,b)
-% n :bits per second per Hz
-% b :residual interference coefficients
-
+function [outage] = find_noma1_minmax_outage(sigma,a,d1,d2,thres,b)
 
 % x(1) = p3
 % x(2) = p33
-fun = @(x)thres*d1^a*sigma/(1-x(1)-thres*x(1)) + thres*d2^a*sigma/(1-x(2)-thres*x(2))...
-    + thres^2*d1^(2*a)*sigma^2/(2*(x(1)-thres*b^2*(1-x(1)))*(x(2)-thres*b^2*(1-x(2)))) + thres^2*d2^(2*a)*sigma^2/(2*(x(1)-thres*b^2*(1-x(1)))*(x(2)-thres*b^2*(1-x(2))));
+fun = @(x)[thres*d1^a*sigma/(1-x(1)-thres*x(1));...
+           thres*d2^a*sigma/(1-x(2)-thres*x(2));...
+           thres^2*d1^(2*a)*sigma^2/(2*(x(1)-thres*b^2*(1-x(1)))*(x(2)-thres*b^2*(1-x(2))));...
+           thres^2*d2^(2*a)*sigma^2/(2*(x(1)-thres*b^2*(1-x(1)))*(x(2)-thres*b^2*(1-x(2))))];
 x0 = [0.01,0.01];
 lb = [thres*b^2/(1+thres*b^2),thres*b^2/(1+thres*b^2)];
 ub = [1/(1+thres),1/(1+thres)];
 
-[x,~] = fmincon(fun,x0,[],[],[],[],lb,ub);
+[x,~] = fminimax(fun,x0,[],[],[],[],lb,ub);
+
 outage =zeros(4,1);
 outage(1) = 1 - exp(sigma*thres*d1^a/(thres*x(1)+x(1)-1));
 outage(2) = 1 - exp(sigma*thres*d2^a/(thres*x(2)+x(2)-1));
