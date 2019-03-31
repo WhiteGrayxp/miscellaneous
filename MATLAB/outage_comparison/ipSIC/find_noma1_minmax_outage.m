@@ -7,8 +7,8 @@ fun = @(x)[thres*d1^a*sigma/(1-x(1)-thres*x(1));...
            thres^2*d1^(2*a)*sigma^2/(2*(x(1)-thres*b^2*(1-x(1)))*(x(2)-thres*b^2*(1-x(2))));...
            thres^2*d2^(2*a)*sigma^2/(2*(x(1)-thres*b^2*(1-x(1)))*(x(2)-thres*b^2*(1-x(2))))];
 x0 = [0.1,0.1];
-lb = [thres*b^2/(1+thres*b^2),thres*b^2/(1+thres*b^2)];
-ub = [1/(1+thres),1/(1+thres)];
+lb = [thres*b^2/(1+thres*b^2)+sigma,thres*b^2/(1+thres*b^2)+sigma];
+ub = [1/(1+thres)-sigma,1/(1+thres)-sigma];
 
 [x,~] = fminimax(fun,x0,[],[],[],[],lb,ub);
 

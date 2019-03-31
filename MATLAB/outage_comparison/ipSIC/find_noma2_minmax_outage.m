@@ -6,7 +6,7 @@ fun = @(x)[d1^a*thres*sigma/(x-thres*(1-x)*b^2),...
 x0 = 0.1;
 Aeq = [];
 beq = [];
-lb = thres*b^2/(1+thres*b^2);
+lb = thres*b^2/(1+thres*b^2)+sigma;
 ub = 1/(1+thres)-sigma;
 [x,~] = fminimax(fun,x0,[],[],Aeq,beq,lb,ub);
 
