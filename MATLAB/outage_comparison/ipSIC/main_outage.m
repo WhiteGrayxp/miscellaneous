@@ -35,16 +35,11 @@ noma2_22_linear_asym = zeros(8,1);
 noma2_22_minmax = zeros(8,1);
 noma2_22_minmax_asym = zeros(8,1);
 
-noma2_13_linear = zeros(8,1);
-noma2_13_linear_asym = zeros(8,1);
-noma2_13_minmax = zeros(8,1);
-noma2_13_minmax_asym = zeros(8,1);
+noma2_13 = zeros(8,1);
+noma2_13_asym = zeros(8,1);
 
-noma2_23_linear = zeros(8,1);
-noma2_23_linear_asym = zeros(8,1);
-noma2_23_minmax = zeros(8,1);
-noma2_23_minmax_asym = zeros(8,1);
-
+noma2_23 = zeros(8,1);
+noma2_23_asym = zeros(8,1);
 for loop = 1:8
     SIR = loop*5+40;
     x_axis(loop) = SIR;
@@ -92,70 +87,62 @@ for loop = 1:8
              noma2_22_minmax(loop) = noma2_22_minmax(loop) + noma2_minmax(2);
              noma2_22_minmax_asym(loop) = noma2_22_minmax_asym(loop) + noma2_minmax_asym(2);
              
-             noma2_13_linear(loop) = noma2_13_linear(loop) + noma2_linear(3);
-             noma2_13_linear_asym(loop) = noma2_13_linear_asym(loop) + noma2_linear_asym(3);
-             noma2_13_minmax(loop) = noma2_13_minmax(loop) + noma2_minmax(3);
-             noma2_13_minmax_asym(loop) = noma2_13_minmax_asym(loop) + noma2_minmax_asym(3);
+             noma2_13(loop) = noma2_13(loop) + noma2_linear(3);
+             noma2_13_asym(loop) = noma2_13_asym(loop) + noma2_linear_asym(3);
              
-             noma2_23_linear(loop) = noma2_23_linear(loop) + noma2_linear(4);
-             noma2_23_linear_asym(loop) = noma2_23_linear_asym(loop) + noma2_linear_asym(4);
-             noma2_23_minmax(loop) = noma2_23_minmax(loop) + noma2_minmax(4);
-             noma2_23_minmax_asym(loop) = noma2_23_minmax_asym(loop) + noma2_minmax_asym(4);
+             noma2_23(loop) = noma2_23(loop) + noma2_linear(4);
+             noma2_23_asym(loop) = noma2_23_asym(loop) + noma2_linear_asym(4);
              
         end
     end
 end
 
 figure(1)
-semilogy(x_axis,noma1_11_linear,'r-*','LineWidth',1,'MarkerSize',10),hold on,grid on;
-semilogy(x_axis,noma1_11_linear_asym,'r-d','LineWidth',1,'MarkerSize',10);
-semilogy(x_axis,noma1_11_minmax,'r-o','LineWidth',1,'MarkerSize',10);
-semilogy(x_axis,noma1_11_minmax_asym,'r-+','LineWidth',1,'MarkerSize',10);
-semilogy(x_axis,noma2_11_linear,'b-*','LineWidth',1,'MarkerSize',10);
-semilogy(x_axis,noma2_11_linear_asym,'b-d','LineWidth',1,'MarkerSize',10);
-semilogy(x_axis,noma2_11_minmax,'b-o','LineWidth',1,'MarkerSize',10);
-semilogy(x_axis,noma2_11_minmax_asym,'b-+','LineWidth',1,'MarkerSize',10);
+semilogy(x_axis,noma1_11_linear/i,'r-*','LineWidth',1,'MarkerSize',10),hold on,grid on;
+semilogy(x_axis,noma1_11_linear_asym/i,'g--','LineWidth',1,'MarkerSize',10);
+semilogy(x_axis,noma1_11_minmax/i,'r-o','LineWidth',1,'MarkerSize',10);
+semilogy(x_axis,noma1_11_minmax_asym/i,'m--','LineWidth',1,'MarkerSize',10);
+semilogy(x_axis,noma2_11_linear/i,'b-*','LineWidth',1,'MarkerSize',10);
+semilogy(x_axis,noma2_11_linear_asym/i,'k--','LineWidth',1,'MarkerSize',10);
+semilogy(x_axis,noma2_11_minmax/i,'b-o','LineWidth',1,'MarkerSize',10);
+semilogy(x_axis,noma2_11_minmax_asym/i,'--','Color',[0.6,0.5,0.3],'LineWidth',1,'MarkerSize',10);
 xlabel('Transmitter SNR (dB)');
 ylabel('Outage Probability');
 legend('NOMA1-linear','NOMA1-linear asymptotic','NOMA1-minmax','NOMA1-minmax asymptotic','NOMA2-linear','NOMA2-linear asymptotic','NOMA2-minmax','NOMA2-minmax asymptotic');
 
 
 figure(2)
-semilogy(x_axis,noma1_22_linear,'r-*','LineWidth',1,'MarkerSize',10),hold on,grid on;
-semilogy(x_axis,noma1_22_linear_asym,'r-d','LineWidth',1,'MarkerSize',10);
-semilogy(x_axis,noma1_22_minmax,'r-o','LineWidth',1,'MarkerSize',10);
-semilogy(x_axis,noma1_22_minmax_asym,'r-+','LineWidth',1,'MarkerSize',10);
-semilogy(x_axis,noma2_22_linear,'b-*','LineWidth',1,'MarkerSize',10);
-semilogy(x_axis,noma2_22_linear_asym,'b-d','LineWidth',1,'MarkerSize',10);
-semilogy(x_axis,noma2_22_minmax,'b-o','LineWidth',1,'MarkerSize',10);
-semilogy(x_axis,noma2_22_minmax_asym,'b-+','LineWidth',1,'MarkerSize',10);
+semilogy(x_axis,noma1_22_linear/i,'r-*','LineWidth',1,'MarkerSize',10),hold on,grid on;
+semilogy(x_axis,noma1_22_linear_asym/i,'g--','LineWidth',1,'MarkerSize',10);
+semilogy(x_axis,noma1_22_minmax/i,'r-o','LineWidth',1,'MarkerSize',10);
+semilogy(x_axis,noma1_22_minmax_asym/i,'m--','LineWidth',1,'MarkerSize',10);
+semilogy(x_axis,noma2_22_linear/i,'b-*','LineWidth',1,'MarkerSize',10);
+semilogy(x_axis,noma2_22_linear_asym/i,'k--','LineWidth',1,'MarkerSize',10);
+semilogy(x_axis,noma2_22_minmax/i,'b-o','LineWidth',1,'MarkerSize',10);
+semilogy(x_axis,noma2_22_minmax_asym/i,'--','Color',[0.6,0.5,0.3],'LineWidth',1,'MarkerSize',10);
 xlabel('Transmitter SNR (dB)');
 ylabel('Outage Probability');
 legend('NOMA1-linear','NOMA1-linear asymptotic','NOMA1-minmax','NOMA1-minmax asymptotic','NOMA2-linear','NOMA2-linear asymptotic','NOMA2-minmax','NOMA2-minmax asymptotic');
 
 
 figure(3)
-semilogy(x_axis,noma1_13_linear,'r-*','LineWidth',1,'MarkerSize',10),hold on,grid on;
-semilogy(x_axis,noma1_13_linear_asym,'r-d','LineWidth',1,'MarkerSize',10);
-semilogy(x_axis,noma1_13_minmax,'r-o','LineWidth',1,'MarkerSize',10);
-semilogy(x_axis,noma1_13_minmax_asym,'r-+','LineWidth',1,'MarkerSize',10);
-semilogy(x_axis,noma2_13_linear,'b-*','LineWidth',1,'MarkerSize',10);
-semilogy(x_axis,noma2_13_linear_asym,'b-d','LineWidth',1,'MarkerSize',10);
-semilogy(x_axis,noma2_13_minmax,'b-o','LineWidth',1,'MarkerSize',10);
-semilogy(x_axis,noma2_13_minmax_asym,'b-+','LineWidth',1,'MarkerSize',10);
+semilogy(x_axis,noma1_13_linear/i,'r-*','LineWidth',1,'MarkerSize',10),hold on,grid on;
+semilogy(x_axis,noma1_13_linear_asym/i,'g--','LineWidth',1,'MarkerSize',10);
+semilogy(x_axis,noma1_13_minmax/i,'r-o','LineWidth',1,'MarkerSize',10);
+semilogy(x_axis,noma1_13_minmax_asym/i,'m--','LineWidth',1,'MarkerSize',10);
+semilogy(x_axis,noma2_13/i,'b-*','LineWidth',1,'MarkerSize',10);
+semilogy(x_axis,noma2_13_asym/i,'k--','LineWidth',1,'MarkerSize',10);
 xlabel('Transmitter SNR (dB)');
 ylabel('Outage Probability');
-legend('NOMA1-linear','NOMA1-linear asymptotic','NOMA1-minmax','NOMA1-minmax asymptotic','NOMA2-linear','NOMA2-linear asymptotic','NOMA2-minmax','NOMA2-minmax asymptotic');
+legend('NOMA1-linear','NOMA1-linear asymptotic','NOMA1-minmax','NOMA1-minmax asymptotic','NOMA2','NOMA2 asymptotic');
 
 figure(4)
-semilogy(x_axis,noma1_23_linear,'r-*','LineWidth',1,'MarkerSize',10),hold on,grid on;
-semilogy(x_axis,noma1_23_linear_asym,'r-d','LineWidth',1,'MarkerSize',10);
-semilogy(x_axis,noma1_23_minmax,'r-o','LineWidth',1,'MarkerSize',10);
-semilogy(x_axis,noma1_23_minmax_asym,'r-+','LineWidth',1,'MarkerSize',10);
-semilogy(x_axis,noma2_23_linear,'b-*','LineWidth',1,'MarkerSize',10);
-semilogy(x_axis,noma2_23_linear_asym,'b-d','LineWidth',1,'MarkerSize',10);
-semilogy(x_axis,noma2_23_minmax,'b-o','LineWidth',1,'MarkerSize',10);
-semilogy(x_axis,noma2_23_minmax_asym,'b-+','LineWidth',1,'MarkerSize',10);
+semilogy(x_axis,noma1_23_linear/i,'r-*','LineWidth',1,'MarkerSize',10),hold on,grid on;
+semilogy(x_axis,noma1_23_linear_asym/i,'g--','LineWidth',1,'MarkerSize',10);
+semilogy(x_axis,noma1_23_minmax/i,'r-o','LineWidth',1,'MarkerSize',10);
+semilogy(x_axis,noma1_23_minmax_asym/i,'m--','LineWidth',1,'MarkerSize',10);
+semilogy(x_axis,noma2_23/i,'b-*','LineWidth',1,'MarkerSize',10);
+semilogy(x_axis,noma2_23_asym/i,'k--','LineWidth',1,'MarkerSize',10);
 xlabel('Transmitter SNR (dB)');
 ylabel('Outage Probability');
-legend('NOMA1-linear','NOMA1-linear asymptotic','NOMA1-minmax','NOMA1-minmax asymptotic','NOMA2-linear','NOMA2-linear asymptotic','NOMA2-minmax','NOMA2-minmax asymptotic');
+legend('NOMA1-linear','NOMA1-linear asymptotic','NOMA1-minmax','NOMA1-minmax asymptotic','NOMA2','NOMA2 asymptotic');
