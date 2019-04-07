@@ -97,7 +97,7 @@ for loop = 1:8
     end
 end
 
-figure(1)
+f1 = figure(1);
 semilogy(x_axis,noma1_11_linear/i,'r-*','LineWidth',1,'MarkerSize',10),hold on,grid on;
 semilogy(x_axis,noma1_11_linear_asym/i,'g--','LineWidth',1,'MarkerSize',10);
 semilogy(x_axis,noma1_11_minmax/i,'r-o','LineWidth',1,'MarkerSize',10);
@@ -111,7 +111,7 @@ ylabel('Outage Probability');
 legend('NOMA1-linear','NOMA1-linear asymptotic','NOMA1-minmax','NOMA1-minmax asymptotic','NOMA2-linear','NOMA2-linear asymptotic','NOMA2-minmax','NOMA2-minmax asymptotic');
 
 
-figure(2)
+f2 = figure(2);
 semilogy(x_axis,noma1_22_linear/i,'r-*','LineWidth',1,'MarkerSize',10),hold on,grid on;
 semilogy(x_axis,noma1_22_linear_asym/i,'g--','LineWidth',1,'MarkerSize',10);
 semilogy(x_axis,noma1_22_minmax/i,'r-o','LineWidth',1,'MarkerSize',10);
@@ -125,7 +125,7 @@ ylabel('Outage Probability');
 legend('NOMA1-linear','NOMA1-linear asymptotic','NOMA1-minmax','NOMA1-minmax asymptotic','NOMA2-linear','NOMA2-linear asymptotic','NOMA2-minmax','NOMA2-minmax asymptotic');
 
 
-figure(3)
+f3 = figure(3);
 semilogy(x_axis,noma1_13_linear/i,'r-*','LineWidth',1,'MarkerSize',10),hold on,grid on;
 semilogy(x_axis,noma1_13_linear_asym/i,'g--','LineWidth',1,'MarkerSize',10);
 semilogy(x_axis,noma1_13_minmax/i,'r-o','LineWidth',1,'MarkerSize',10);
@@ -136,7 +136,7 @@ xlabel('Transmitter SNR (dB)');
 ylabel('Outage Probability');
 legend('NOMA1-linear','NOMA1-linear asymptotic','NOMA1-minmax','NOMA1-minmax asymptotic','NOMA2','NOMA2 asymptotic');
 
-figure(4)
+f4 = figure(4);
 semilogy(x_axis,noma1_23_linear/i,'r-*','LineWidth',1,'MarkerSize',10),hold on,grid on;
 semilogy(x_axis,noma1_23_linear_asym/i,'g--','LineWidth',1,'MarkerSize',10);
 semilogy(x_axis,noma1_23_minmax/i,'r-o','LineWidth',1,'MarkerSize',10);

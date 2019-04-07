@@ -69,6 +69,6 @@ plot(x_axis,out_2_ipSIC_1,'k-.*','LineWidth',1,'MarkerSize',10);
 plot(x_axis,out_1_ipSIC_2,'g-.p','LineWidth',1,'MarkerSize',10);
 plot(x_axis,out_2_ipSIC_2,'g-.*','LineWidth',1,'MarkerSize',10);
 plot(x_axis,out_3,'b-o','LineWidth',1,'MarkerSize',10);
-legend('NOMA1 pSIC','NOMA2 pSIC','NOMA1 ipSIC b=0.1','NOMA2 ipSIC b=0.1','NOMA1 ipSIC b=0.2','NOMA2 ipSIC b=0.2','OMA');
+legend('NOMA1 pSIC','NOMA2 pSIC','NOMA1 ipSIC \beta=0.1','NOMA2 ipSIC \beta=0.1','NOMA1 ipSIC \beta=0.2','NOMA2 ipSIC \beta=0.2','OMA');
 xlabel('Transmitter SNR (dB)');
 ylabel('Throughput b/s/Hz');

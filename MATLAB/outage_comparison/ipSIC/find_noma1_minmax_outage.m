@@ -25,3 +25,6 @@ asym(1) = thres*d1^a*sigma/(1-x(1)-thres*x(1));
 asym(2) = thres*d2^a*sigma/(1-x(2)-thres*x(2));
 asym(3) = thres^2*d1^(2*a)*sigma^2/(2*(x(1)-thres*b^2*(1-x(1)))*(x(2)-thres*b^2*(1-x(2))));
 asym(4) = thres^2*d2^(2*a)*sigma^2/(2*(x(1)-thres*b^2*(1-x(1)))*(x(2)-thres*b^2*(1-x(2))));
+
+asym(3) = thres^2*d1^(2*a)*sigma^2/(2*(x(1)-thres*b^2*(1-x(1)))*(x(2)-thres*b^2*(1-x(2))));
+asym(4) = thres^2*d2^(2*a)*sigma^2/(2*(x(1)-thres*b^2*(1-x(1)))*(x(2)-thres*b^2*(1-x(2))));
