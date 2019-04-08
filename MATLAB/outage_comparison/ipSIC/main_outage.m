@@ -106,8 +106,8 @@ semilogy(x_axis,noma2_11_linear/i,'b-*','LineWidth',1,'MarkerSize',10);
 semilogy(x_axis,noma2_11_linear_asym/i,'k--','LineWidth',1,'MarkerSize',10);
 semilogy(x_axis,noma2_11_minmax/i,'b-o','LineWidth',1,'MarkerSize',10);
 semilogy(x_axis,noma2_11_minmax_asym/i,'--','Color',[0.6,0.5,0.3],'LineWidth',1,'MarkerSize',10);
-xlabel('Transmitter SNR (dB)');
-ylabel('Outage Probability');
+xlabel('Transmitter SNR (dB)','Fontname','Times New Roman');
+ylabel('Throughput b/s/Hz','Fontname','Times New Roman');
 legend('NOMA1-linear','NOMA1-linear asymptotic','NOMA1-minmax','NOMA1-minmax asymptotic','NOMA2-linear','NOMA2-linear asymptotic','NOMA2-minmax','NOMA2-minmax asymptotic');
 
 
@@ -120,8 +120,8 @@ semilogy(x_axis,noma2_22_linear/i,'b-*','LineWidth',1,'MarkerSize',10);
 semilogy(x_axis,noma2_22_linear_asym/i,'k--','LineWidth',1,'MarkerSize',10);
 semilogy(x_axis,noma2_22_minmax/i,'b-o','LineWidth',1,'MarkerSize',10);
 semilogy(x_axis,noma2_22_minmax_asym/i,'--','Color',[0.6,0.5,0.3],'LineWidth',1,'MarkerSize',10);
-xlabel('Transmitter SNR (dB)');
-ylabel('Outage Probability');
+xlabel('Transmitter SNR (dB)','Fontname','Times New Roman');
+ylabel('Throughput b/s/Hz','Fontname','Times New Roman');
 legend('NOMA1-linear','NOMA1-linear asymptotic','NOMA1-minmax','NOMA1-minmax asymptotic','NOMA2-linear','NOMA2-linear asymptotic','NOMA2-minmax','NOMA2-minmax asymptotic');
 
 
@@ -132,8 +132,8 @@ semilogy(x_axis,noma1_13_minmax/i,'r-o','LineWidth',1,'MarkerSize',10);
 semilogy(x_axis,noma1_13_minmax_asym/i,'m--','LineWidth',1,'MarkerSize',10);
 semilogy(x_axis,noma2_13/i,'b-*','LineWidth',1,'MarkerSize',10);
 semilogy(x_axis,noma2_13_asym/i,'k--','LineWidth',1,'MarkerSize',10);
-xlabel('Transmitter SNR (dB)');
-ylabel('Outage Probability');
+xlabel('Transmitter SNR (dB)','Fontname','Times New Roman');
+ylabel('Throughput b/s/Hz','Fontname','Times New Roman');
 legend('NOMA1-linear','NOMA1-linear asymptotic','NOMA1-minmax','NOMA1-minmax asymptotic','NOMA2','NOMA2 asymptotic');
 
 f4 = figure(4);
@@ -143,6 +143,6 @@ semilogy(x_axis,noma1_23_minmax/i,'r-o','LineWidth',1,'MarkerSize',10);
 semilogy(x_axis,noma1_23_minmax_asym/i,'m--','LineWidth',1,'MarkerSize',10);
 semilogy(x_axis,noma2_23/i,'b-*','LineWidth',1,'MarkerSize',10);
 semilogy(x_axis,noma2_23_asym/i,'k--','LineWidth',1,'MarkerSize',10);
-xlabel('Transmitter SNR (dB)');
-ylabel('Outage Probability');
+xlabel('Transmitter SNR (dB)','Fontname','Times New Roman');
+ylabel('Throughput b/s/Hz','Fontname','Times New Roman');
 legend('NOMA1-linear','NOMA1-linear asymptotic','NOMA1-minmax','NOMA1-minmax asymptotic','NOMA2','NOMA2 asymptotic');

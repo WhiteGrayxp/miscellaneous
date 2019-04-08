@@ -65,18 +65,20 @@ out_1_ipSIC_2 = out_1_ipSIC_2/i/2;
 out_2_ipSIC_2 = out_2_ipSIC_2/i/2;
 out_3_2 = out_3_2/i/3;
 
-figure();
-plot(x_axis,out_1_pSIC_1,'k-s','LineWidth',1,'MarkerSize',10),hold on;grid on;
-plot(x_axis,out_2_pSIC_1,'k-d','LineWidth',1,'MarkerSize',10);
+f = figure(1);
+plot(x_axis,out_1_pSIC_2,'r-s','LineWidth',1,'MarkerSize',10),hold on;grid on;
+plot(x_axis,out_1_ipSIC_2,'r-.p','LineWidth',1,'MarkerSize',10);
+plot(x_axis,out_2_pSIC_2,'r-d','LineWidth',1,'MarkerSize',10);
+plot(x_axis,out_2_ipSIC_2,'r-.*','LineWidth',1,'MarkerSize',10);
+plot(x_axis,out_3_2,'r-o','LineWidth',1,'MarkerSize',10);
+
+plot(x_axis,out_1_pSIC_1,'k-s','LineWidth',1,'MarkerSize',10);
 plot(x_axis,out_1_ipSIC_1,'k-.p','LineWidth',1,'MarkerSize',10);
+plot(x_axis,out_2_pSIC_1,'k-d','LineWidth',1,'MarkerSize',10);
 plot(x_axis,out_2_ipSIC_1,'k-.*','LineWidth',1,'MarkerSize',10);
 plot(x_axis,out_3_1,'k-o','LineWidth',1,'MarkerSize',10);
 
-plot(x_axis,out_1_pSIC_2,'r-s','LineWidth',1,'MarkerSize',10);
-plot(x_axis,out_2_pSIC_2,'r-d','LineWidth',1,'MarkerSize',10);
-plot(x_axis,out_1_ipSIC_2,'r-.p','LineWidth',1,'MarkerSize',10);
-plot(x_axis,out_2_ipSIC_2,'r-.*','LineWidth',1,'MarkerSize',10);
-plot(x_axis,out_3_2,'r-o','LineWidth',1,'MarkerSize',10);
-legend('NOMA1 pSIC n=0.75','NOMA2 pSIC n=0.75','NOMA1 ipSIC n=0.75','NOMA2 ipSIC n=0.75','OMA n=0.75','NOMA1 pSIC n=1.5','NOMA2 pSIC n=1.5','NOMA1 ipSIC n=1.5','NOMA2 ipSIC n=1.5','OMA n=1.5');
-xlabel('Transmitter SNR (dB)');
-ylabel('Throughput b/s/Hz');
+
+legend('NOMA1 pSIC \itn\rm=1.5','NOMA1 ipSIC \itn\rm=1.5','NOMA2 pSIC \itn\rm=1.5','NOMA2 ipSIC \itn\rm=1.5','OMA \itn\rm=1.5','NOMA1 pSIC \itn\rm=0.75','NOMA1 ipSIC \itn\rm=0.75','NOMA2 pSIC \itn\rm=0.75','NOMA2 ipSIC \itn\rm=0.75','OMA \itn\rm=0.75');
+xlabel('Transmitter SNR (dB)','Fontname','Times New Roman');
+ylabel('Throughput b/s/Hz','Fontname','Times New Roman');
