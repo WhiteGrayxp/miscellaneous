@@ -56,7 +56,7 @@ out_3 = out_3/i/3;
 
 out_1_ipSIC_2 = out_1_ipSIC_2/i/2;
 
-set(gca,'Fontname', 'Times New Roman');
+
 figure();
 plot(x_axis,out_1_pSIC_1,'r-s','LineWidth',1,'MarkerSize',10),hold on;grid on;
 plot(x_axis,out_1_ipSIC_1,'k-.p','LineWidth',1,'MarkerSize',10);

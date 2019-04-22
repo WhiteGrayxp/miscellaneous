@@ -50,8 +50,8 @@ for loop = 1:8
              noma_23(loop) = noma_23(loop) + noma1_linear(4);
              noma_23_asym(loop) = noma_23_asym(loop) + noma1_linear_asym(4);
              
-             p3 = 0.25;
-             p33 = 0.2;
+             p3 = 1/3;
+             p33 = 1/3+0.0001;
              c = p3 - thres*(1-p3)*b^2;
              d = p33 - thres*(1-p33)*b^2;
              out_temp = 4 - exp(sigma*thres*d1^a/(thres*p3+p3-1)) - exp(sigma*thres*d2^a/(thres*p33+p33-1))...
@@ -79,5 +79,5 @@ semilogy(x_axis,noma_fixed_asym/i,'b-.','LineWidth',1,'MarkerSize',10);
 
 xlabel('Transmitter SNR (dB)','Fontname','Times New Roman','Fontsize',14);
 ylabel('Sum of outage probabilities','Fontname','Times New Roman','Fontsize',14);
-legend('Dynamic analytical','Dynamic simulation','Dynamic asymptotic','Fixed analytical','Fixed simulation','Fixed asymptotic','Fontname','Times New Roman');
-
+legend('Dynamic exact','Dynamic simulation','Dynamic asymptotic','Fixed exact','Fixed simulation','Fixed asymptotic','Fontname','Times New Roman');
+ set(gca,'Fontname', 'Times New Roman');
