@@ -56,13 +56,13 @@ out_3 = out_3/i/3;
 
 out_1_ipSIC_2 = out_1_ipSIC_2/i/2;
 
-
+set(gca,'Fontname', 'Times New Roman');
 figure();
 plot(x_axis,out_1_pSIC_1,'r-s','LineWidth',1,'MarkerSize',10),hold on;grid on;
 plot(x_axis,out_1_ipSIC_1,'k-.p','LineWidth',1,'MarkerSize',10);
 plot(x_axis,out_1_ipSIC_2,'g-.+','LineWidth',1,'MarkerSize',10);
 plot(x_axis,out_3,'b-o','LineWidth',1,'MarkerSize',10);
 
-legend('NOMA pSIC','NOMA ipSIC \beta=0.1','NOMA ipSIC \beta=0.2','OMA');
-xlabel('Transmitter SNR (dB)','Fontname','Times New Roman');
-ylabel('Average Throughput (BPCU)','Fontname','Times New Roman');
+legend('NOMA pSIC','NOMA ipSIC \beta=0.1','NOMA ipSIC \beta=0.2','OMA','Fontname','Times New Roman');
+xlabel('Transmitter SNR (dB)','Fontname','Times New Roman','Fontsize',14);
+ylabel('Average throughput (BPCU)','Fontname','Times New Roman','Fontsize',14);

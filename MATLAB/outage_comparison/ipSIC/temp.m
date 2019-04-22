@@ -50,8 +50,8 @@ for loop = 1:8
              noma_23(loop) = noma_23(loop) + noma1_linear(4);
              noma_23_asym(loop) = noma_23_asym(loop) + noma1_linear_asym(4);
              
-             p3 = 0.2;
-             p33 = 0.25;
+             p3 = 0.25;
+             p33 = 0.2;
              c = p3 - thres*(1-p3)*b^2;
              d = p33 - thres*(1-p33)*b^2;
              out_temp = 4 - exp(sigma*thres*d1^a/(thres*p3+p3-1)) - exp(sigma*thres*d2^a/(thres*p33+p33-1))...
@@ -67,13 +67,17 @@ for loop = 1:8
 end
 noma_dynamic = noma_11 +noma_22 + noma_13 +noma_23;
 noma_dynamic_asym = noma_11_asym + noma_22_asym + noma_13_asym + noma_23_asym;
+noma_dynamic_simu = noma_dynamic;
+noma_fixed_simu = noma_fixed;
 f1 = figure(1);
-semilogy(x_axis,noma_dynamic/i,'r-*','LineWidth',1,'MarkerSize',10),hold on,grid on;
+semilogy(x_axis,noma_dynamic/i,'r-','LineWidth',1,'MarkerSize',10),hold on,grid on;
+semilogy(x_axis,noma_dynamic_simu/i,'r*','LineWidth',1,'MarkerSize',10);
 semilogy(x_axis,noma_dynamic_asym/i,'b--','LineWidth',1,'MarkerSize',10);
-semilogy(x_axis,noma_fixed/i,'g-o','LineWidth',1,'MarkerSize',10);
+semilogy(x_axis,noma_fixed/i,'g-','LineWidth',1,'MarkerSize',10);
+semilogy(x_axis,noma_fixed_simu/i,'go','LineWidth',1,'MarkerSize',10);
 semilogy(x_axis,noma_fixed_asym/i,'b-.','LineWidth',1,'MarkerSize',10);
 
-xlabel('Transmitter SNR (dB)','Fontname','Times New Roman');
-ylabel('Sum of Outage Probability','Fontname','Times New Roman');
-legend('Dynamic','Dynamic asymptotic','Fixed','Fixed asymptotic');
+xlabel('Transmitter SNR (dB)','Fontname','Times New Roman','Fontsize',14);
+ylabel('Sum of outage probabilities','Fontname','Times New Roman','Fontsize',14);
+legend('Dynamic analytical','Dynamic simulation','Dynamic asymptotic','Fixed analytical','Fixed simulation','Fixed asymptotic','Fontname','Times New Roman');
 
