@@ -60,7 +60,7 @@ out_1_ipSIC_2 = out_1_ipSIC_2/i/2;
 figure();
 plot(x_axis,out_1_pSIC_1,'r-s','LineWidth',1,'MarkerSize',10),hold on;grid on;
 plot(x_axis,out_1_ipSIC_1,'k-.p','LineWidth',1,'MarkerSize',10);
-plot(x_axis,out_1_ipSIC_2,'g-.+','LineWidth',1,'MarkerSize',10);
+plot(x_axis,out_1_ipSIC_2,'c-.+','LineWidth',1,'MarkerSize',10);
 plot(x_axis,out_3,'b-o','LineWidth',1,'MarkerSize',10);
 
 legend('NOMA pSIC','NOMA ipSIC \beta=0.1','NOMA ipSIC \beta=0.2','OMA','Fontname','Times New Roman');

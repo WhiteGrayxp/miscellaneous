@@ -73,8 +73,8 @@ f1 = figure(1);
 semilogy(x_axis,noma_dynamic/i,'r-','LineWidth',1,'MarkerSize',10),hold on,grid on;
 semilogy(x_axis,noma_dynamic_simu/i,'r*','LineWidth',1,'MarkerSize',10);
 semilogy(x_axis,noma_dynamic_asym/i,'b--','LineWidth',1,'MarkerSize',10);
-semilogy(x_axis,noma_fixed/i,'g-','LineWidth',1,'MarkerSize',10);
-semilogy(x_axis,noma_fixed_simu/i,'go','LineWidth',1,'MarkerSize',10);
+semilogy(x_axis,noma_fixed/i,'k-','LineWidth',1,'MarkerSize',10);
+semilogy(x_axis,noma_fixed_simu/i,'ko','LineWidth',1,'MarkerSize',10);
 semilogy(x_axis,noma_fixed_asym/i,'b-.','LineWidth',1,'MarkerSize',10);
 
 xlabel('Transmitter SNR (dB)','Fontname','Times New Roman','Fontsize',14);
