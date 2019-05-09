@@ -94,7 +94,7 @@ plot(x_axis,out_1_ipSIC_1,'k-.p','LineWidth',1,'MarkerSize',10);
 plot(x_axis,out_3_1,'k-o','LineWidth',1,'MarkerSize',10);
 
 
-legend('NOMA pSIC \itR_{\rmth}\rm=1.5','NOMA ipSIC \itR_{\rmth}\rm=1.5','OMA \itR_{\rmth}\rm=1.5','NOMA pSIC \itR_{\rmth}\rm=0.75','NOMA ipSIC \itR_{\rmth}\rm=0.75','OMA \itR_{\rmth}\rm=0.75','Fontname','Times New Roman');
-xlabel('Transmitter SNR (dB)','Fontname','Times New Roman','Fontsize',14);
-ylabel('Average throughput (BPCU)','Fontname','Times New Roman','Fontsize',14);
- set(gca,'Fontname', 'Times New Roman');
+legend('NOMA, pSIC, \itR_{\rmth}\rm=1.5','NOMA, ipSIC, \itR_{\rmth}\rm=1.5','OMA, \itR_{\rmth}\rm=1.5','NOMA, pSIC, \itR_{\rmth}\rm=0.75','NOMA, ipSIC, \itR_{\rmth}\rm=0.75','OMA, \itR_{\rmth}\rm=0.75','FontSize',16,'Fontname','Times New Roman');
+xlabel('Transmitter SNR (dB)','Fontname','Times New Roman','Fontsize',16);
+ylabel('Average throughput (BPCU)','Fontname','Times New Roman','Fontsize',16);
+ set(gca,'FontSize',16,'Fontname', 'Times New Roman');

@@ -79,5 +79,5 @@ semilogy(x_axis,noma_fixed_asym/i,'b-.','LineWidth',1,'MarkerSize',10);
 
 xlabel('Transmitter SNR (dB)','Fontname','Times New Roman','Fontsize',14);
 ylabel('Total outage probability','Fontname','Times New Roman','Fontsize',14);
-legend('Dynamic exact','Dynamic simulation','Dynamic asymptotic','Fixed exact','Fixed simulation','Fixed asymptotic','Fontname','Times New Roman');
- set(gca,'Fontname', 'Times New Roman');
+legend('Dynamic, exact','Dynamic, simulation','Dynamic, asymptotic','Fixed, exact','Fixed, simulation','Fixed, asymptotic','FontSize',14,'Fontname','Times New Roman');
+ set(gca,'FontSize',14 ,'Fontname', 'Times New Roman');

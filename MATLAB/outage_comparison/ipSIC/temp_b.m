@@ -63,6 +63,7 @@ plot(x_axis,out_1_ipSIC_1,'k-.p','LineWidth',1,'MarkerSize',10);
 plot(x_axis,out_1_ipSIC_2,'c-.+','LineWidth',1,'MarkerSize',10);
 plot(x_axis,out_3,'b-o','LineWidth',1,'MarkerSize',10);
 
-legend('NOMA pSIC','NOMA ipSIC \beta=0.1','NOMA ipSIC \beta=0.2','OMA','Fontname','Times New Roman');
+legend('NOMA, pSIC','NOMA, ipSIC, \beta=0.1','NOMA, ipSIC, \beta=0.2','OMA','FontSize',14,'Fontname','Times New Roman');
 xlabel('Transmitter SNR (dB)','Fontname','Times New Roman','Fontsize',14);
 ylabel('Average throughput (BPCU)','Fontname','Times New Roman','Fontsize',14);
+ set(gca,'FontSize',14 ,'Fontname', 'Times New Roman');
