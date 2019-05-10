@@ -82,7 +82,7 @@ semilogy(x_axis,outage_asym11_ip/10,'b--s','LineWidth',1,'MarkerSize',10);
 legend('Analysis, pSIC','Simulation, pSIC','Asymptotic, pSIC','Analysis, ipSIC','Simulation, ipSIC','Asymptotic, ipSIC','Fontname','Times New Roman');
 xlabel('Transmitter SNR (dB)','Fontname','Times New Roman');
 ylabel('Outage Probability','Fontname','Times New Roman');
-set(gca,'FontSize',14,'Fontname', 'Times New Roman');
+set(gca,'FontSize',12,'Fontname', 'Times New Roman');
 
 
 figure(2);
@@ -92,6 +92,6 @@ semilogy(x_axis,outage_asym22/10,'b--d','LineWidth',1,'MarkerSize',10);
 legend('Analysis','Simulation','Asymptotic','Fontname','Times New Roman');
 xlabel('Transmitter SNR (dB)','Fontname','Times New Roman');
 ylabel('Outage Probability','Fontname','Times New Roman');
-set(gca,'FontSize',14,'Fontname', 'Times New Roman');
+set(gca,'FontSize',12,'Fontname', 'Times New Roman');
 
 
