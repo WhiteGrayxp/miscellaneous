@@ -30,22 +30,15 @@ for loop = 1:8
              
              [temp1,~] = find_noma1_linear_outage(sigma,a,d1,d2,thres,b);
              out_1_ipSIC_1(loop) = out_1_ipSIC_1(loop) + 4*n - n*sum(temp1);
-             [temp2,~] = find_noma2_linear_outage(sigma,a,d1,d2,thres,b);
-             out_2_ipSIC_1(loop) = out_2_ipSIC_1(loop) + 4*n - n*sum(temp2);
              [temp3,~] = find_noma1_linear_outage(sigma,a,d1,d2,thres,0);
              out_1_pSIC_1(loop) = out_1_pSIC_1(loop) + 4*n - n*sum(temp3);
-             [temp4,~] = find_noma2_linear_outage(sigma,a,d1,d2,thres,0);
-             out_2_pSIC_1(loop) = out_2_pSIC_1(loop) + 4*n - n*sum(temp4);
              out_3(loop) = out_3(loop) + 4*n - n*2*(1 - exp(-1*d1^a*thres*sigma) + 1 - exp(-1*d2^a*thres*sigma));
             % n=1.5 b=0.2
              n = 1.5;
              thres = (2^n-1)/0.396;
              b = 0.2;
-             
              [temp5,~] = find_noma1_linear_outage(sigma,a,d1,d2,thres,b);
              out_1_ipSIC_2(loop) = out_1_ipSIC_2(loop) + 4*n - n*sum(temp5);
-             [temp6,~] = find_noma2_linear_outage(sigma,a,d1,d2,thres,b);
-             out_2_ipSIC_2(loop) = out_2_ipSIC_2(loop) + 4*n - n*sum(temp6);
              
         end
     end
