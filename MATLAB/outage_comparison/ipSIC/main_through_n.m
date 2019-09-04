@@ -79,7 +79,7 @@ plot(x_axis,out_2_ipSIC_1,'k-.*','LineWidth',1,'MarkerSize',10);
 plot(x_axis,out_3_1,'k-o','LineWidth',1,'MarkerSize',10);
 
 
-legend('NOMA1, pSIC, \itR_{\rmth}\rm=1.5','NOMA1, ipSIC, \itR_{\rmth}\rm=1.5','NOMA2, pSIC, \itR_{\rmth}\rm=1.5','NOMA2, ipSIC, \itR_{\rmth}\rm=1.5','OMA, \itR_{\rmth}\rm=1.5','NOMA1, pSIC, \itR_{\rmth}\rm=0.75','NOMA1, ipSIC, \itR_{\rmth}\rm=0.75','NOMA2, pSIC, \itR_{\rmth}\rm=0.75','NOMA2, ipSIC, \itR_{\rmth}\rm=0.75','OMA,\itR_{\rmth}\rm=0.75','FontSize',14,'Fontname','Times New Roman');
+legend('Co-NOMA, pSIC, \itR_{\rmth}\rm=1.5','Co-NOMA, ipSIC, \itR_{\rmth}\rm=1.5','No-NOMA, pSIC, \itR_{\rmth}\rm=1.5','No-NOMA, ipSIC, \itR_{\rmth}\rm=1.5','OMA, \itR_{\rmth}\rm=1.5','Co-NOMA, pSIC, \itR_{\rmth}\rm=0.75','Co-NOMA, ipSIC, \itR_{\rmth}\rm=0.75','No-NOMA, pSIC, \itR_{\rmth}\rm=0.75','No-NOMA, ipSIC, \itR_{\rmth}\rm=0.75','OMA,\itR_{\rmth}\rm=0.75','FontSize',14,'Fontname','Times New Roman');
 xlabel('Transmitter SNR (dB)','FontSize',14,'Fontname','Times New Roman');
 ylabel('Average throughput (BPCU)','FontSize',14,'Fontname','Times New Roman');
 
