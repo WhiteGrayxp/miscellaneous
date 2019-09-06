@@ -16,9 +16,9 @@ out_1_ipSIC_2 = zeros(8,1);
 out_2_ipSIC_2 = zeros(8,1);
 
 for loop = 1:8
-    SIR = loop*5+40;
+    SIR = loop*5;
     x_axis(loop) = SIR;
-    sigma = 10^(-SIR/10); 
+    sigma = 30^(-3)*10^(-SIR/10); 
     i = 0;
     for d1 = 10:10:40
         for d2 = d1+10:10:50
@@ -71,6 +71,6 @@ plot(x_axis,out_2_ipSIC_2,'g-.>','LineWidth',1,'MarkerSize',10);
 plot(x_axis,out_3,'b-o','LineWidth',1,'MarkerSize',10);
 
 legend('Co-NOMA, pSIC','Co-NOMA, ipSIC, \beta=0.1','NOMA1, ipSIC, \beta=0.2','No-NOMA, pSIC','No-NOMA, ipSIC, \beta=0.1','No-NOMA, ipSIC, \beta=0.2','OMA','FontSize',12,'Fontname','Times New Roman');
-xlabel('Transmitter SNR (dB)','FontSize',12,'Fontname','Times New Roman');
-ylabel('Average Throughput (BPCU)','FontSize',12,'Fontname','Times New Roman');
+xlabel('Average SNR (dB)','FontSize',12,'Fontname','Times New Roman');
+ylabel('Average outage capacity (BPCU)','FontSize',12,'Fontname','Times New Roman');
 set(gca,'FontSize',12,'Fontname', 'Times New Roman');

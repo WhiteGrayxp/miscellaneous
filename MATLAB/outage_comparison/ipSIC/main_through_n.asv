@@ -79,8 +79,7 @@ plot(x_axis,out_2_ipSIC_1,'k-.*','LineWidth',1,'MarkerSize',10);
 plot(x_axis,out_3_1,'k-o','LineWidth',1,'MarkerSize',10);
 
 
-%legend('Co-NOMA, pSIC, \itR_{\rmth}\rm=1.5','Co-NOMA, ipSIC, \itR_{\rmth}\rm=1.5','No-NOMA, pSIC, \itR_{\rmth}\rm=1.5','No-NOMA, ipSIC, \itR_{\rmth}\rm=1.5','OMA, \itR_{\rmth}\rm=1.5','Co-NOMA, pSIC, \itR_{\rmth}\rm=0.75','Co-NOMA, ipSIC, \itR_{\rmth}\rm=0.75','No-NOMA, pSIC, \itR_{\rmth}\rm=0.75','No-NOMA, ipSIC, \itR_{\rmth}\rm=0.75','OMA,\itR_{\rmth}\rm=0.75','FontSize',12,'Fontname','Times New Roman');
-legend('Co-NOMA, pSIC','Co-NOMA, ipSIC','No-NOMA, pSIC','No-NOMA, ipSIC','OMA','Co-NOMA, pSIC','Co-NOMA, ipSIC','No-NOMA, pSIC','No-NOMA, ipSIC','OMA','FontSize',12,'Fontname','Times New Roman');
+legend('Co-NOMA, pSIC, \itR_{\rmth}\rm=1.5','Co-NOMA, ipSIC, \itR_{\rmth}\rm=1.5','No-NOMA, pSIC, \itR_{\rmth}\rm=1.5','No-NOMA, ipSIC, \itR_{\rmth}\rm=1.5','OMA, \itR_{\rmth}\rm=1.5','Co-NOMA, pSIC, \itR_{\rmth}\rm=0.75','Co-NOMA, ipSIC, \itR_{\rmth}\rm=0.75','No-NOMA, pSIC, \itR_{\rmth}\rm=0.75','No-NOMA, ipSIC, \itR_{\rmth}\rm=0.75','OMA,\itR_{\rmth}\rm=0.75','FontSize',12,'Fontname','Times New Roman');
 xlabel('Average SNR (dB)','FontSize',14,'Fontname','Times New Roman');
 ylabel('Average outage capacity (BPCU)','FontSize',14,'Fontname','Times New Roman');
 
