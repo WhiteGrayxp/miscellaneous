@@ -70,7 +70,7 @@ plot(x_axis,out_2_ipSIC_1,'k-.*','LineWidth',1,'MarkerSize',10);
 plot(x_axis,out_2_ipSIC_2,'g-.>','LineWidth',1,'MarkerSize',10);
 plot(x_axis,out_3,'b-o','LineWidth',1,'MarkerSize',10);
 
-legend('Co-NOMA, pSIC','Co-NOMA, ipSIC, \beta=0.1','NOMA1, ipSIC, \beta=0.2','No-NOMA, pSIC','No-NOMA, ipSIC, \beta=0.1','No-NOMA, ipSIC, \beta=0.2','OMA','FontSize',12,'Fontname','Times New Roman');
+legend('Co-NOMA, pSIC','Co-NOMA, ipSIC, \beta=0.1','Co-NOMA, ipSIC, \beta=0.2','No-NOMA, pSIC','No-NOMA, ipSIC, \beta=0.1','No-NOMA, ipSIC, \beta=0.2','OMA','FontSize',12,'Fontname','Times New Roman');
 xlabel('Average SNR (dB)','FontSize',12,'Fontname','Times New Roman');
 ylabel('Average outage capacity (BPCU)','FontSize',12,'Fontname','Times New Roman');
 set(gca,'FontSize',12,'Fontname', 'Times New Roman');
