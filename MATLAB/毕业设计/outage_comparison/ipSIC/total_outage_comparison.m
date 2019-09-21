@@ -78,7 +78,7 @@ semilogy(x_axis,no_noma_simu_search,'b>','LineWidth',1,'MarkerSize',10);
 semilogy(x_axis,oma_exact,'c-','LineWidth',1,'MarkerSize',10);
 semilogy(x_axis,oma_simu,'co','LineWidth',1,'MarkerSize',10);
 
-legend('Co-NOMA-theorem','Co-NOMA-simulation','Co-NOMA-theorem-search','Co-NOMA-simulation-search','No-NOMA-theorem','No-NOMA-simulation','No-NOMA-theorem-search','No-NOMA-simulation-search','OMA-theorem','OMA-simulation');
+legend('C-NOMA,analysis,asymptotic','C-NOMA,simulation,asymptotic','C-NOMA,analysis,accurate','C-NOMA,simulation,accurate','NC-NOMA,analysis,asymptotic','NC-NOMA,simulation,asymptotic','NC-NOMA,analysis,accurate','NC-NOMA,simulation,accurate','OMA,analysis','OMA,simulation');
 xlabel('Average SNR (dB)','FontSize',14,'Fontname','Times New Roman');
 ylabel('SOP','FontSize',14,'Fontname','Times New Roman');
 
