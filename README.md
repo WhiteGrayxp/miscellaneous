@@ -1,9 +1,5 @@
-# codes
-# 添加当前文件夹所有文件
-git add .
-# 提交改动
-git commit
-# 合并仓库
-git pull --rebase origin master
-# 上传
-git push -u origin master
+## 该仓库记录我研究生期间一些琐碎的代码，包括：
+
+* 本科毕业设计
+* 数值计算课程
+* 优化算法课程

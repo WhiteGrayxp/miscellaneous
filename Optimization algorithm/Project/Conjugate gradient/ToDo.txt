@@ -1,0 +1,2 @@
+1. 参考数值分析时的CG算法，实现基于Jacob 和 Gauss Seidel preconditioner 的共轭梯度法 即SSOR算子
+2. 查阅资料，实现基于不完全Cholesky分解或者Modified 不完全Cholesky分解的CG法
